@@ -6,23 +6,22 @@ import java.util.Objects;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	private Integer id;
 	private String name;
 	private String email;
-	private String senha;
-	
+	private String password;
+
 	public User() {
-		
+
 	}
 
-	public User(Integer id, String name, String email, String senha) {
+	public User(Integer id, String name, String email, String password) {
 
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.senha = senha;
+		this.password = password;
 	}
 
 	public Integer getId() {
@@ -49,12 +48,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	@Override
@@ -73,6 +72,5 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }
