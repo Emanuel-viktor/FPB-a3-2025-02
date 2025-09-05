@@ -1,13 +1,23 @@
 package com.FPBa3.FPB_A3_2025_2.entities;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="tb_event")
 
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private String description;
