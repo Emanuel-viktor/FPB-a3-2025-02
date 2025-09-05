@@ -1,0 +1,111 @@
+package com.FPBa3.FPB_A3_2025_2.entities;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Event implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	private String name;
+	private String description;
+	private LocalDateTime dateTime;
+	private String location;
+	private byte[] poster;
+	private User usuario;
+	
+	public Event () {
+					
+	}
+
+	public Event(Integer id, String name, String description, LocalDateTime dateTime, String location, byte[] poster,
+			User usuario) {
+		
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.dateTime = dateTime;
+		this.location = location;
+		this.poster = poster;
+		this.usuario = usuario;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public byte[] getPoster() {
+		return poster;
+	}
+
+	public void setPoster(byte[] poster) {
+		this.poster = poster;
+	}
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Event other = (Event) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
+	
+
+}
