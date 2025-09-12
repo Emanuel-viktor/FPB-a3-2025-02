@@ -25,7 +25,7 @@ public class Complaint implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private TypeOfcomplaint type;
+	private Integer type;
 	private String description;
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dateTime;
@@ -44,7 +44,7 @@ public class Complaint implements Serializable {
 			byte[] media, User usuario) {
 	
 		this.id = id;
-		this.type = type;
+		setType(type);
 		this.description = description;
 		this.dateTime = dateTime;
 		this.location = location;
@@ -60,12 +60,13 @@ public class Complaint implements Serializable {
 		this.id = id;
 	}
 
-	public TypeOfcomplaint getType() {
-		return type;
+	public TypeOfcomplaint getType() throws IllegalAccessException {
+		return TypeOfcomplaint.valueOf(type) ;
 	}
 
 	public void setType(TypeOfcomplaint type) {
-		this.type = type;
+		if(type!=null) {
+		this.type = type.getCode();}
 	}
 
 	public String getDescription() {
