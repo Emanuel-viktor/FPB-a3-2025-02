@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ public class Event implements Serializable {
 	private Integer id;
 	private String name;
 	private String description;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dateTime;
 	private String location;
 	private byte[] poster;

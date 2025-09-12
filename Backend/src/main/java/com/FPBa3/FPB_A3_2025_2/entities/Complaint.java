@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.FPBa3.FPB_A3_2025_2.Enum.TypeOfcomplaint;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -26,6 +27,7 @@ public class Complaint implements Serializable {
 	private Integer id;
 	private TypeOfcomplaint type;
 	private String description;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dateTime;
 	private String location;
 	private byte[] media;
