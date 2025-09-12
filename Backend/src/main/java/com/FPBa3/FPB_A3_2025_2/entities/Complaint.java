@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.FPBa3.FPB_A3_2025_2.Enum.TypeOfcomplaint;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public class Complaint implements Serializable {
 	private byte[] media;
 	@ManyToOne
 	@JoinColumn(name = "TB_USER/ID")
+	@JsonIgnore
 	private User usuario;
 	
 	public Complaint() {

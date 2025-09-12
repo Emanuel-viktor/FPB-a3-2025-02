@@ -1,11 +1,15 @@
 package com.FPBa3.FPB_A3_2025_2.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +25,11 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String password;
+	@OneToMany(mappedBy = "usuario")
+	private List<Complaint> complaint = new ArrayList<>();
+	@OneToMany(mappedBy= "usuario")
+	private List<Event> event =new ArrayList<>();
+	
 
 	public User() {
 
@@ -65,6 +74,13 @@ public class User implements Serializable {
 	public void setpassword(String password) {
 		this.password = password;
 	}
+	public List<Complaint> getComplaint() {
+		return complaint;
+	}
+	public List<Event> getEvent() {
+		return event;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -83,4 +99,7 @@ public class User implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	
+
+	
 }

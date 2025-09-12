@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Event implements Serializable {
 	private byte[] poster;
 	@ManyToOne
 	@JoinColumn(name = "TB_USER/ID")
+	@JsonIgnore
 	private User usuario;
 	
 	public Event () {
