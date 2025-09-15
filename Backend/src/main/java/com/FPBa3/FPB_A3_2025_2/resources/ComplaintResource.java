@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.FPBa3.FPB_A3_2025_2.entities.Complaint;
-import com.FPBa3.FPB_A3_2025_2.entities.User;
 import com.FPBa3.FPB_A3_2025_2.services.ComplaintService;
 
 @RestController
