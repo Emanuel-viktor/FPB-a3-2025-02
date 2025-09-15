@@ -21,5 +21,8 @@ public class ComplaintService {
 		Optional <Complaint> obj = repository.findById(id);
 		return obj.get();
 	}
-
+	
+	public Complaint insert(Complaint obj) {
+		return repository.save(obj);
+	}
 }
