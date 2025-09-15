@@ -25,5 +25,8 @@ public class EventService {
 	public Event insert(Event obj) {
 		return repository.save(obj);
 	}
+	public void delete(Integer id) {
+		repository.deleteById(id);  
+	}
 
 }
