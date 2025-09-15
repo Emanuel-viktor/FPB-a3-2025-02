@@ -25,4 +25,7 @@ public class ComplaintService {
 	public Complaint insert(Complaint obj) {
 		return repository.save(obj);
 	}
+	public void delete(Integer id) {
+		repository.deleteById(id);  
+	}
 }

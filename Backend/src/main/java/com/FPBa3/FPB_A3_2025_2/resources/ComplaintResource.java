@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,29 +20,37 @@ import com.FPBa3.FPB_A3_2025_2.services.ComplaintService;
 @RestController
 @RequestMapping(value = "/complaints")
 public class ComplaintResource {
-	
 
 	@Autowired
 	private ComplaintService ComplaintService;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Complaint>> findAll(){
-		
-		
+	public ResponseEntity<List<Complaint>> findAll() {
+
 		List<Complaint> list = ComplaintService.findAll();
-		return ResponseEntity.ok().body(list);}
-		
-		@GetMapping(value= "/{id}")
-		public ResponseEntity<Complaint> findById(@PathVariable Integer id){
-			Complaint obj = ComplaintService.findBYid(id);
-			return ResponseEntity.ok().body(obj);
-		
-		}
-		
-		@PostMapping
-		
-		public ResponseEntity<Complaint> insert(@RequestBody Complaint obj){
-			obj = ComplaintService.insert(obj);
-			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-			return ResponseEntity.created(uri).body(obj);
-	}}
+		return ResponseEntity.ok().body(list);
+	}
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Complaint> findById(@PathVariable Integer id) {
+		Complaint obj = ComplaintService.findBYid(id);
+		return ResponseEntity.ok().body(obj);
+
+	}
+
+	@PostMapping
+
+	public ResponseEntity<Complaint> insert(@RequestBody Complaint obj) {
+		obj = ComplaintService.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
+	}
+
+	@DeleteMapping(value = "/{id}")
+
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		ComplaintService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
+}
