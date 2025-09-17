@@ -1,9 +1,13 @@
 package com.FPBa3.FPB_A3_2025_2.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.FPBa3.FPB_A3_2025_2.entities.Event;
 import com.FPBa3.FPB_A3_2025_2.repositories.EventRepository;
 
@@ -27,6 +31,13 @@ public class EventService {
 	}
 	public void delete(Integer id) {
 		repository.deleteById(id);  
+	}
+	public List<Event> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+	    return repository.findByDateTimeBetween(inicio, fim);
+	}
+
+	public List<Event> buscarPorDia(LocalDate data) {
+	    return repository.findByDia(data);
 	}
 
 }
