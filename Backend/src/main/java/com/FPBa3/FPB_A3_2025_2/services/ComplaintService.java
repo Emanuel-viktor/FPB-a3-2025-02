@@ -1,5 +1,7 @@
 package com.FPBa3.FPB_A3_2025_2.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +29,12 @@ public class ComplaintService {
 	}
 	public void delete(Integer id) {
 		repository.deleteById(id);  
+	}
+	public List<Complaint> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+	    return repository.findByDateTimeBetween(inicio, fim);
+	}
+
+	public List<Complaint> buscarPorDia(LocalDate data) {
+	    return repository.findByDia(data);
 	}
 }
