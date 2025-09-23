@@ -3,12 +3,10 @@ package com.FPBa3.FPB_A3_2025_2.config;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
 import com.FPBa3.FPB_A3_2025_2.Enum.TypeOfcomplaint;
 import com.FPBa3.FPB_A3_2025_2.entities.Complaint;
 import com.FPBa3.FPB_A3_2025_2.entities.Event;

@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.FPBa3.FPB_A3_2025_2.entities.Complaint;
 import com.FPBa3.FPB_A3_2025_2.repositories.ComplaintRepository;
 @Service
