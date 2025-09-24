@@ -2,12 +2,10 @@ package com.FPBa3.FPB_A3_2025_2.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

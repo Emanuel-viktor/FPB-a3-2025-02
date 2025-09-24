@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Eventos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #2a4d9b;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .poster {
+      max-width: 100px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eventos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Data</th>
+        <th>Local</th>
+        <th>Organizador</th>
+        <th>Poster</th>
+      </tr>
+    </thead>
+    <tbody id="eventTable"></tbody>
+  </table>
+
+  <script>
+    const url = "http://localhost:8080/events"; // ajuste para sua API
+
+    console.log("Script carregado!"); 
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("DADOS DA API:", data); // 👈 debug no console
+        const tbody = document.getElementById("eventTable");
+
+        data.forEach(evento => {
+          const tr = document.createElement("tr");
+
+          // ID
+          const tdId = document.createElement("td");
+          tdId.textContent = evento.id;
+          tr.appendChild(tdId);
+
+          // Nome
+          const tdNome = document.createElement("td");
+          tdNome.textContent = evento.name;
+          tr.appendChild(tdNome);
+
+          // Descrição
+          const tdDesc = document.createElement("td");
+          tdDesc.textContent = evento.description;
+          tr.appendChild(tdDesc);
+
+          // Data
+          const tdData = document.createElement("td");
+          tdData.textContent = evento.dateTime; // já vem formatado do backend
+          tr.appendChild(tdData);
+
+          // Local
+          const tdLocal = document.createElement("td");
+          tdLocal.textContent = evento.location;
+          tr.appendChild(tdLocal);
+
+          // Organizador
+          const tdUsuario = document.createElement("td");
+          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
+          tr.appendChild(tdUsuario);
+
+          // Poster
+          const tdPoster = document.createElement("td");
+          if (evento.poster) {
+            const img = document.createElement("img");
+            img.classList.add("poster");
+            img.src = "data:image/png;base64," + evento.poster;
+            tdPoster.appendChild(img);
+          } else {
+            tdPoster.textContent = "—";
+          }
+          tr.appendChild(tdPoster);
+
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(error => console.error("Erro ao buscar eventos:", error));
+  </script>
+</body>
+</html>
