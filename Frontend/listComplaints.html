@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de Eventos</title>
+  <title>Lista de Denúncias</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -33,89 +33,87 @@
     tr:nth-child(even) {
       background: #f9f9f9;
     }
-    .poster {
+    .media {
       max-width: 100px;
       border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <h1>Eventos</h1>
+  <h1>Denúncias</h1>
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>Nome</th>
+        <th>Tipo</th>
         <th>Descrição</th>
         <th>Data</th>
         <th>Local</th>
-        <th>Organizador</th>
-        <th>Poster</th>
+        <th>Mídia</th>
+        <th>Usuário</th>
       </tr>
     </thead>
-    <tbody id="eventTable"></tbody>
+    <tbody id="complaintTable"></tbody>
   </table>
 
   <script>
-    const url = "http://localhost:8080/events"; 
-
-    console.log("Script carregado!"); 
+    const url = "http://localhost:8080/complaints"; 
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log("DADOS DA API:", data); 
-        const tbody = document.getElementById("eventTable");
+        const tbody = document.getElementById("complaintTable");
 
-        data.forEach(evento => {
+        data.forEach(denuncia => {
           const tr = document.createElement("tr");
 
           // ID
           const tdId = document.createElement("td");
-          tdId.textContent = evento.id;
+          tdId.textContent = denuncia.id;
           tr.appendChild(tdId);
 
-          // Nome
-          const tdNome = document.createElement("td");
-          tdNome.textContent = evento.name;
-          tr.appendChild(tdNome);
+          // Tipo (já vem como string do Enum no backend)
+          const tdTipo = document.createElement("td");
+          tdTipo.textContent = denuncia.type;
+          tr.appendChild(tdTipo);
 
           // Descrição
           const tdDesc = document.createElement("td");
-          tdDesc.textContent = evento.description;
+          tdDesc.textContent = denuncia.description;
           tr.appendChild(tdDesc);
 
           // Data
           const tdData = document.createElement("td");
-          tdData.textContent = evento.dateTime; 
+          tdData.textContent = denuncia.dateTime;
           tr.appendChild(tdData);
 
           // Local
           const tdLocal = document.createElement("td");
-          tdLocal.textContent = evento.location;
+          tdLocal.textContent = denuncia.location;
           tr.appendChild(tdLocal);
 
-          // Organizador
-          const tdUsuario = document.createElement("td");
-          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
-          tr.appendChild(tdUsuario);
-
-          // Poster
-          const tdPoster = document.createElement("td");
-          if (evento.poster) {
+          // Mídia (imagem em base64)
+          const tdMedia = document.createElement("td");
+          if (denuncia.media) {
             const img = document.createElement("img");
-            img.classList.add("poster");
-            img.src = "data:image/png;base64," + evento.poster;
-            tdPoster.appendChild(img);
+            img.classList.add("media");
+            img.src = "data:image/png;base64," + denuncia.media;
+            tdMedia.appendChild(img);
           } else {
-            tdPoster.textContent = "—";
+            tdMedia.textContent = "—";
           }
-          tr.appendChild(tdPoster);
+          tr.appendChild(tdMedia);
+
+          // Usuário
+          const tdUsuario = document.createElement("td");
+          tdUsuario.textContent = denuncia.usuario ? denuncia.usuario.name : "—";
+          tr.appendChild(tdUsuario);
 
           tbody.appendChild(tr);
         });
       })
-      .catch(error => console.error("Erro ao buscar eventos:", error));
+      .catch(error => console.error("Erro ao buscar denúncias:", error));
   </script>
 </body>
 </html>
