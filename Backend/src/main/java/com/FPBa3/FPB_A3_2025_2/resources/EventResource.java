@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.FPBa3.FPB_A3_2025_2.entities.Event;
 import com.FPBa3.FPB_A3_2025_2.services.EventService;
 
@@ -65,6 +65,12 @@ public class EventResource {
 	public List<Event> getEventosPorDia(
 	        @RequestParam("data") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data) {
 	    return eventService.buscarPorDia(data);
+	}
+	@PutMapping(value ="/{id}")
+	
+	public ResponseEntity<Event> update(@PathVariable Integer id,@RequestBody Event obj){
+		obj = eventService.update(id, obj);
+		return ResponseEntity.ok().body(obj);
 	}
 
 }
