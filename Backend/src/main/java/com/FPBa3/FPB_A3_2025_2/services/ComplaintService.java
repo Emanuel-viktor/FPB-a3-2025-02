@@ -35,4 +35,15 @@ public class ComplaintService {
 	public List<Complaint> buscarPorDia(LocalDate data) {
 	    return repository.findByDia(data);
 	}
+	public Complaint update(Integer id,Complaint obj) {
+		Complaint entity=repository.getReferenceById(id);
+		return repository.save(entity);	
+	}
+	public void updateData(Complaint entity, Complaint obj) throws IllegalAccessException {
+		entity.setDateTime(obj.getDateTime());
+		entity.setDescription(obj.getDescription());
+		entity.setLocation(obj.getLocation());
+		entity.setType(obj.getType());
+		
+	}
 }

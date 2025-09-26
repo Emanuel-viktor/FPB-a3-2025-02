@@ -41,6 +41,7 @@ public class EventService {
 		Event entity = repository.getReferenceById(id);
 		return repository.save(entity);
 	}
+	@SuppressWarnings("unused")
 	private void updateData(Event entity, Event obj) {
 		
 		entity.setDateTime(obj.getDateTime());
