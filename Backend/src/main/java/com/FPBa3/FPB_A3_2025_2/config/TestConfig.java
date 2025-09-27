@@ -37,6 +37,9 @@ public void run(String... args) throws Exception {
     
 	Complaint Cp1 = new Complaint(null,  TypeOfcomplaint.ASSALTO, "Assalto mao armada", LocalDateTime.now(), "Rua projetada 178", null, u1);
 	complaintRepository.saveAll(Arrays.asList(Cp1));
+	
+	Complaint Cp2 = new Complaint(null,  TypeOfcomplaint.ACIDENTE, "Acidente de carro ", LocalDateTime.now(), "Rua paraiba 20", null, u1);
+	complaintRepository.saveAll(Arrays.asList(Cp2));
 }
 
 
