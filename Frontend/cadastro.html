@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="logoalert.png" type="image/x-icon">
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/media-query.css">
+    <link rel="shortcut icon" href="imagens/image.png" type="image/x-icon">
     
 </head>
 <body>
@@ -15,22 +16,25 @@
         <section id="login">
             <div id="imagem"></div>
             <div id="form">
-                <h1>Login</h1>
-                <p>Seja bem-vindo(a). Faça login para acessar sua conta.</p>
+                <h1>Cadastro</h1>
+                <p>Seja bem-vindo(a). Faça cadastro para acessar sua conta.</p>
                 <form action="form.html" method="post" autocomplete="on">
-                    <div class="campo"> 
+                    <div class="campo">
                         <span class="material-icons">person</span>
-                        <input type="email" name="ilogi" id="login" placeholder="E-mail" maxlength="20">
+                        <input type="text" autocomplete="on" required minlength="5" maxlength="8" placeholder="Digite seu nome">
+                    </div>
+                    <div class="campo"> 
+                        <span class="material-icons">mail</span>
+                        <input type="email" name="ilogi" id="login" placeholder="Digite seu e-mail" maxlength="20" required>
                         <label for="login"></label>
                     </div>
                     <div  class="campo">
                         <span class="material-icons">vpn_key</span>
-                        <input type="password" name="isenha" id="senha" placeholder="Senha" required autocomplete="current-password" minlength="8" maxlength="15">
+                        <input type="password" name="isenha" id="senha" placeholder="Digite sua senha" required autocomplete="current-password" minlength="8" maxlength="15">
                         <label for="senha"></label>
+                        
                     </div>
-                    <input type="submit" value="Entrar">
-                    <a href="cadastro.html" class="botao">
-                    Cadastro <span class="material-icons">person_add</span> 
+                    <input type="submit" value="Entrar" class="entrar">
                     </a>
                 </form>
             </div>
