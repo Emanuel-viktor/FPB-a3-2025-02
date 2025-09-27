@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body ,html{
+    background-color: rgb(137, 43, 226);
+    height: 100vh;
+    width: 100vw;
+}
+
+main{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+section#login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    overflow: hidden;
+
+
+    background-color: white;
+    width: 250px;
+    height: 530px;
+    border-radius: 20px;
+    box-shadow: 4px 2px 5px rgba(0, 0, 0, 0.432);
+
+    transition: width 1s , height 1s;
+    transition-timing-function: ease;
+
+}
+
+section#login > div#imagem{
+    display: block;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+
+}
+
+section#login > div#form{
+    display: block;
+    text-align: center;
+    padding: 10px;
+   
+}
+
+#form h1 {
+    margin-bottom: 10px;
+    text-decoration: underline;    
+}
+
+#form h1:hover{
+    text-decoration: none;
+    transition-duration: 1s;
+    transform: scale(98%);
+}
+
+p{
+    text-align: left;
+    padding: 10px;
+    padding-left: 5px;
+    font-size: 0.9em;
+    
+}
+
+form > input[type=submit]{
+    display: block;
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    background-color: rgb(149, 163, 175);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+form > input[type=submit]:hover{
+    background-color: rgba(240, 255, 255, 0.432);
+    text-decoration: underline;
+
+}
+form > a.botao{
+    display: block;
+    text-align: center;
+    font-size: 1em;
+    width: 100%;
+    height: 35px;
+    background-color:white;
+    border-radius: 7px;
+    border: 1px solid black;
+    text-decoration: none;
+    margin-top: 5px;
+
+}
+form > a.botao:hover{
+    background-color: lightblue;
+}
+
+form > a.botao > i{
+    font-size: 0.8em;
+}
+
+form > div.campo{
+    background-color: blueviolet;
+    border: 2px solid #5f2c82;
+    height: 40px;
+    border-radius: 8px;
+    margin: 5px 0px;
+    border: 2px solid #5f2c82;
+
+
+}
+
+div.campo span{
+    color: white;
+    font-size: 2em;
+    width: 40px;
+    padding: 5px;
+}
+
+div.campo > input{
+    background-color:#6db6b3 ;
+    font-size: 1em;
+    width: calc(100% - 70px);
+    height: 100%;
+    border: 0px;
+    border-radius: 9px;
+    padding: 4px;
+    transform: translateY(-10px);
+
+}
+div.campo > input:focus-within{
+    background-color: white;
+}
