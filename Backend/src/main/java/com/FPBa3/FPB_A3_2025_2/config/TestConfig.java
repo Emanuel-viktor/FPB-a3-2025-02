@@ -32,13 +32,16 @@ public void run(String... args) throws Exception {
 	User u1 =new User(null, "Adm1", "adm1fpbproject@gmail.com", "123456");
 	userRepository.saveAll(Arrays.asList(u1));
 	
+	User u2 =new User(null, "Adm2", "adm2fpbproject@gmail.com", "1234567");
+	userRepository.saveAll(Arrays.asList(u2));
+	
 	Event ev1 = new Event(null, "Sao joao", "Evento publico", LocalDateTime.now(), "Praça do povo", null, u1);
     eventRepository.saveAll(Arrays.asList(ev1));
     
 	Complaint Cp1 = new Complaint(null,  TypeOfcomplaint.ASSALTO, "Assalto mao armada", LocalDateTime.now(), "Rua projetada 178", null, u1);
 	complaintRepository.saveAll(Arrays.asList(Cp1));
 	
-	Complaint Cp2 = new Complaint(null,  TypeOfcomplaint.ACIDENTE, "Acidente de carro ", LocalDateTime.now(), "Rua paraiba 20", null, u1);
+	Complaint Cp2 = new Complaint(null,  TypeOfcomplaint.ACIDENTE, "Acidente de carro ", LocalDateTime.now(), "Rua paraiba 20", null, u2);
 	complaintRepository.saveAll(Arrays.asList(Cp2));
 }
 
