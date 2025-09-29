@@ -6,12 +6,52 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      display: flex;
+      height: 100vh;
       background: #0a0a0a;
     }
+
+    
+    .sidebar {
+      width: 220px;
+      background: #161a1d;
+      border-right: 2px solid #ee0e0e;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #ddd;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #ee0e0e;
+      color: #fff;
+    }
+
+    
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
     h1 {
       color: #ece7e7;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -21,19 +61,22 @@
       overflow: hidden;
       box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
     }
+
     th, td {
       padding: 12px;
       border: 1px solid #ee0e0e;
       text-align: left;
     }
+
     th {
       background: #161a1d;
       color: #fff;
     }
+
     tr:nth-child(even) {
       background: #b6a8a8;
-     
     }
+
     .poster {
       max-width: 100px;
       border-radius: 4px;
@@ -41,22 +84,32 @@
   </style>
 </head>
 <body>
-  <h1>Lista de eventos</h1>
-  <br>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Data</th>
-        <th>Local</th>
-        <th>Organizador</th>
-        <th>Poster</th>
-      </tr>
-    </thead>
-    <tbody id="eventTable"></tbody>
-  </table>
+  
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <a href="principal.html">Tela Principal</a>
+    <a href="eventos.html">Lista de Eventos</a>
+    <a href="creditos.html">Créditos</a>
+  </div>
+
+ 
+  <div class="content">
+    <h1>Lista de eventos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Local</th>
+          <th>Organizador</th>
+          <th>Poster</th>
+        </tr>
+      </thead>
+      <tbody id="eventTable"></tbody>
+    </table>
+  </div>
 
   <script>
     const url = "http://localhost:8080/events"; 
@@ -72,37 +125,30 @@
         data.forEach(evento => {
           const tr = document.createElement("tr");
 
-          
           const tdId = document.createElement("td");
           tdId.textContent = evento.id;
           tr.appendChild(tdId);
 
-          
           const tdNome = document.createElement("td");
           tdNome.textContent = evento.name;
           tr.appendChild(tdNome);
 
-          
           const tdDesc = document.createElement("td");
           tdDesc.textContent = evento.description;
           tr.appendChild(tdDesc);
 
-          
           const tdData = document.createElement("td");
           tdData.textContent = evento.dateTime; 
           tr.appendChild(tdData);
 
-          
           const tdLocal = document.createElement("td");
           tdLocal.textContent = evento.location;
           tr.appendChild(tdLocal);
 
-          
           const tdUsuario = document.createElement("td");
           tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
           tr.appendChild(tdUsuario);
 
-          
           const tdPoster = document.createElement("td");
           if (evento.poster) {
             const img = document.createElement("img");
