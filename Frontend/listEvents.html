@@ -7,7 +7,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      background: #0b0b0b;
+      background: #0a0a0a;
     }
     h1 {
       color: #ece7e7;
@@ -31,7 +31,8 @@
       color: #fff;
     }
     tr:nth-child(even) {
-      background: #f9f9f9;
+      background: #b6a8a8;
+     
     }
     .poster {
       max-width: 100px;
@@ -71,37 +72,37 @@
         data.forEach(evento => {
           const tr = document.createElement("tr");
 
-          // ID
+          
           const tdId = document.createElement("td");
           tdId.textContent = evento.id;
           tr.appendChild(tdId);
 
-          // Nome
+          
           const tdNome = document.createElement("td");
           tdNome.textContent = evento.name;
           tr.appendChild(tdNome);
 
-          // Descrição
+          
           const tdDesc = document.createElement("td");
           tdDesc.textContent = evento.description;
           tr.appendChild(tdDesc);
 
-          // Data
+          
           const tdData = document.createElement("td");
           tdData.textContent = evento.dateTime; 
           tr.appendChild(tdData);
 
-          // Local
+          
           const tdLocal = document.createElement("td");
           tdLocal.textContent = evento.location;
           tr.appendChild(tdLocal);
 
-          // Organizador
+          
           const tdUsuario = document.createElement("td");
           tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
           tr.appendChild(tdUsuario);
 
-          // Poster
+          
           const tdPoster = document.createElement("td");
           if (evento.poster) {
             const img = document.createElement("img");

@@ -7,31 +7,31 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      background: #f4f4f9;
+      background: #0a0a0a;
     }
     h1 {
-      color: #333;
+      color: #ece7e7;;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
-      background: #fff;
+      background:#ece7e7;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
     }
     th, td {
       padding: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid #ee0e0e;
       text-align: left;
     }
     th {
-      background: #474a50;
+      background: #161a1d;
       color: #fff;
     }
     tr:nth-child(even) {
-      background: #f9f9f9;
+      background: #b6a8a8;
     }
     .media {
       max-width: 100px;
@@ -40,7 +40,8 @@
   </style>
 </head>
 <body>
-  <h1>Denúncias</h1>
+  <h1>Lista de denúncias</h1>
+  <br>
   <table>
     <thead>
       <tr>
@@ -68,32 +69,32 @@
         data.forEach(denuncia => {
           const tr = document.createElement("tr");
 
-          // ID
+          
           const tdId = document.createElement("td");
           tdId.textContent = denuncia.id;
           tr.appendChild(tdId);
 
-          // Tipo (já vem como string do Enum no backend)
+          
           const tdTipo = document.createElement("td");
           tdTipo.textContent = denuncia.type;
           tr.appendChild(tdTipo);
 
-          // Descrição
+          
           const tdDesc = document.createElement("td");
           tdDesc.textContent = denuncia.description;
           tr.appendChild(tdDesc);
 
-          // Data
+          
           const tdData = document.createElement("td");
           tdData.textContent = denuncia.dateTime;
           tr.appendChild(tdData);
 
-          // Local
+          
           const tdLocal = document.createElement("td");
           tdLocal.textContent = denuncia.location;
           tr.appendChild(tdLocal);
 
-          // Mídia (imagem em base64)
+          
           const tdMedia = document.createElement("td");
           if (denuncia.media) {
             const img = document.createElement("img");
@@ -105,7 +106,7 @@
           }
           tr.appendChild(tdMedia);
 
-          // Usuário
+          
           const tdUsuario = document.createElement("td");
           tdUsuario.textContent = denuncia.usuario ? denuncia.usuario.name : "—";
           tr.appendChild(tdUsuario);
