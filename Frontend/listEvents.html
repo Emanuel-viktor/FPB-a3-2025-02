@@ -13,7 +13,6 @@
       background: #0a0a0a;
     }
 
-    
     .sidebar {
       width: 220px;
       background: #161a1d;
@@ -42,7 +41,6 @@
       color: #fff;
     }
 
-    
     .content {
       flex: 1;
       padding: 20px;
@@ -82,6 +80,40 @@
       max-width: 100px;
       border-radius: 4px;
     }
+
+    /* ===== FILTRO ===== */
+    .filter-box {
+      margin-bottom: 20px;
+      background: #161a1d;
+      padding: 15px;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .filter-box label {
+      margin-right: 10px;
+    }
+
+    .filter-box input {
+      margin-right: 15px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ee0e0e;
+    }
+
+    .filter-box button {
+      padding: 6px 12px;
+      background: #ee0e0e;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .filter-box button:hover {
+      background: #b30c0c;
+    }
   </style>
 </head>
 <body>
@@ -90,12 +122,21 @@
     <h2>Menu</h2>
     <a href="principal.html">Tela Principal</a>
     <a href="listComplaints.html">Lista de Denúncias</a>
-    <a href="creditos">Creditos</a>
+    <a href="creditos.html">Créditos</a>
   </div>
 
- 
   <div class="content">
     <h1>Lista de eventos</h1>
+
+    <!-- FILTRO -->
+    <div class="filter-box">
+      <label for="inicio">Data Início:</label>
+      <input type="datetime-local" id="inicio">
+      <label for="fim">Data Fim:</label>
+      <input type="datetime-local" id="fim">
+      <button onclick="filtrar()">Filtrar</button>
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -113,58 +154,74 @@
   </div>
 
   <script>
-    const url = "http://localhost:8080/events"; 
+    const baseUrl = "http://localhost:8080/events";
 
-    console.log("Script carregado!"); 
+    function carregarEventos(url) {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const tbody = document.getElementById("eventTable");
+          tbody.innerHTML = ""; // limpa antes de adicionar novos
 
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log("DADOS DA API:", data); 
-        const tbody = document.getElementById("eventTable");
+          data.forEach(evento => {
+            const tr = document.createElement("tr");
 
-        data.forEach(evento => {
-          const tr = document.createElement("tr");
+            const tdId = document.createElement("td");
+            tdId.textContent = evento.id;
+            tr.appendChild(tdId);
 
-          const tdId = document.createElement("td");
-          tdId.textContent = evento.id;
-          tr.appendChild(tdId);
+            const tdNome = document.createElement("td");
+            tdNome.textContent = evento.name;
+            tr.appendChild(tdNome);
 
-          const tdNome = document.createElement("td");
-          tdNome.textContent = evento.name;
-          tr.appendChild(tdNome);
+            const tdDesc = document.createElement("td");
+            tdDesc.textContent = evento.description;
+            tr.appendChild(tdDesc);
 
-          const tdDesc = document.createElement("td");
-          tdDesc.textContent = evento.description;
-          tr.appendChild(tdDesc);
+            const tdData = document.createElement("td");
+            tdData.textContent = evento.dateTime; 
+            tr.appendChild(tdData);
 
-          const tdData = document.createElement("td");
-          tdData.textContent = evento.dateTime; 
-          tr.appendChild(tdData);
+            const tdLocal = document.createElement("td");
+            tdLocal.textContent = evento.location;
+            tr.appendChild(tdLocal);
 
-          const tdLocal = document.createElement("td");
-          tdLocal.textContent = evento.location;
-          tr.appendChild(tdLocal);
+            const tdUsuario = document.createElement("td");
+            tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
+            tr.appendChild(tdUsuario);
 
-          const tdUsuario = document.createElement("td");
-          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
-          tr.appendChild(tdUsuario);
+            const tdPoster = document.createElement("td");
+            if (evento.poster) {
+              const img = document.createElement("img");
+              img.classList.add("poster");
+              img.src = "data:image/png;base64," + evento.poster;
+              tdPoster.appendChild(img);
+            } else {
+              tdPoster.textContent = "—";
+            }
+            tr.appendChild(tdPoster);
 
-          const tdPoster = document.createElement("td");
-          if (evento.poster) {
-            const img = document.createElement("img");
-            img.classList.add("poster");
-            img.src = "data:image/png;base64," + evento.poster;
-            tdPoster.appendChild(img);
-          } else {
-            tdPoster.textContent = "—";
-          }
-          tr.appendChild(tdPoster);
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(error => console.error("Erro ao buscar eventos:", error));
+    }
 
-          tbody.appendChild(tr);
-        });
-      })
-      .catch(error => console.error("Erro ao buscar eventos:", error));
+    // Função do filtro
+    function filtrar() {
+      const inicio = document.getElementById("inicio").value;
+      const fim = document.getElementById("fim").value;
+
+      if (inicio && fim) {
+        const url = `${baseUrl}/period?inicio=${inicio}&fim=${fim}`;
+        carregarEventos(url);
+      } else {
+        alert("Preencha as duas datas para aplicar o filtro!");
+      }
+    }
+
+    // Carrega todos os eventos ao iniciar
+    carregarEventos(baseUrl);
   </script>
 </body>
 </html>
