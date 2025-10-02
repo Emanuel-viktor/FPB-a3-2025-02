@@ -1,8 +1,11 @@
 package com.FPBa3.FPB_A3_2025_2.config;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +22,7 @@ import com.FPBa3.FPB_A3_2025_2.repositories.UserRepository;
 @Profile("test")
 
 public class TestConfig implements CommandLineRunner {
+	
 
 @Autowired
 private UserRepository userRepository;
@@ -29,6 +33,8 @@ private ComplaintRepository complaintRepository;
 @Override
 public void run(String... args) throws Exception {
 	
+	LocalDateTime dateTimeY1 = LocalDateTime.of(2025, 8, 1, 15, 20);
+	
 	User u1 =new User(null, "Adm1", "adm1fpbproject@gmail.com", "123456");
 	userRepository.saveAll(Arrays.asList(u1));
 	
@@ -38,6 +44,8 @@ public void run(String... args) throws Exception {
 	Event ev1 = new Event(null, "Sao joao", "Evento publico", LocalDateTime.now(), "Praça do povo", null, u1);
     eventRepository.saveAll(Arrays.asList(ev1));
     
+    Event ev2 =new Event(null, "Ação social", "Evento comunitario", dateTimeY1, "Praça getulio vargas", null, u2);
+    eventRepository.saveAll(Arrays.asList(ev2));
 	Complaint Cp1 = new Complaint(null,  TypeOfcomplaint.ASSALTO, "Assalto mao armada", LocalDateTime.now(), "Rua projetada 178", null, u1);
 	complaintRepository.saveAll(Arrays.asList(Cp1));
 	
