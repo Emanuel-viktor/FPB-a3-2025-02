@@ -3,15 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Denúncias</title>
+  <br>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      display: flex;
+      height: 100vh;
       background: #0a0a0a;
     }
-    h1 {
-      color: #ece7e7;;
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 220px;
+      background: #161a1d;
+      border-right: 2px solid #ee0e0e;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
     }
+
+    .sidebar h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #ddd;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #ee0e0e;
+      color: #fff;
+    }
+
+    /* ===== CONTEÚDO ===== */
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      color: #ece7e7;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -21,18 +62,22 @@
       overflow: hidden;
       box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
     }
+
     th, td {
       padding: 12px;
       border: 1px solid #ee0e0e;
       text-align: left;
     }
+
     th {
       background: #161a1d;
       color: #fff;
     }
+
     tr:nth-child(even) {
       background: #b6a8a8;
     }
+
     .media {
       max-width: 100px;
       border-radius: 4px;
@@ -40,22 +85,32 @@
   </style>
 </head>
 <body>
-  <h1>Lista de denúncias</h1>
-  <br>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Tipo</th>
-        <th>Descrição</th>
-        <th>Data</th>
-        <th>Local</th>
-        <th>Mídia</th>
-        <th>Usuário</th>
-      </tr>
-    </thead>
-    <tbody id="complaintTable"></tbody>
-  </table>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <a href="principal.html">Tela Principal</a>
+    <a href="listEvents.html">Lista de Eventos</a>
+    <a href="creditos.html">Créditos</a>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="content">
+    <h1>Lista de denúncias</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Local</th>
+          <th>Mídia</th>
+          <th>Usuário</th>
+        </tr>
+      </thead>
+      <tbody id="complaintTable"></tbody>
+    </table>
+  </div>
 
   <script>
     const url = "http://localhost:8080/complaints"; 
@@ -69,32 +124,26 @@
         data.forEach(denuncia => {
           const tr = document.createElement("tr");
 
-          
           const tdId = document.createElement("td");
           tdId.textContent = denuncia.id;
           tr.appendChild(tdId);
 
-          
           const tdTipo = document.createElement("td");
           tdTipo.textContent = denuncia.type;
           tr.appendChild(tdTipo);
 
-          
           const tdDesc = document.createElement("td");
           tdDesc.textContent = denuncia.description;
           tr.appendChild(tdDesc);
 
-          
           const tdData = document.createElement("td");
           tdData.textContent = denuncia.dateTime;
           tr.appendChild(tdData);
 
-          
           const tdLocal = document.createElement("td");
           tdLocal.textContent = denuncia.location;
           tr.appendChild(tdLocal);
 
-          
           const tdMedia = document.createElement("td");
           if (denuncia.media) {
             const img = document.createElement("img");
@@ -106,7 +155,6 @@
           }
           tr.appendChild(tdMedia);
 
-          
           const tdUsuario = document.createElement("td");
           tdUsuario.textContent = denuncia.usuario ? denuncia.usuario.name : "—";
           tr.appendChild(tdUsuario);
