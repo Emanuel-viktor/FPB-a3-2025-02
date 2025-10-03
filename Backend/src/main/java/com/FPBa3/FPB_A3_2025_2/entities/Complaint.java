@@ -20,115 +20,121 @@ import jakarta.persistence.Table;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name="tb_complaint")
+@Table(name = "tb_complaint")
 public class Complaint implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private Integer type;
-	private String description;
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private LocalDateTime dateTime;
-	private String location;
-	private byte[] media;
-	@ManyToOne
-	@JoinColumn(name = "TB_USER/ID")
-	@JsonIgnoreProperties({"event", "complaint"}) 
-	
-	private User usuario;
-	
-	public Complaint() {
-		
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Complaint(Integer id, TypeOfcomplaint type, String description, LocalDateTime dateTime, String location,
-			byte[] media, User usuario) {
-	
-		this.id = id;
-		setType(type);
-		this.description = description;
-		this.dateTime = dateTime;
-		this.location = location;
-		this.media = media;
-		this.usuario = usuario;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer type;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String description;
 
-	public TypeOfcomplaint getType() throws IllegalAccessException {
-		return TypeOfcomplaint.valueOf(type) ;
-	}
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    private LocalDateTime dateTime;
 
-	public void setType(TypeOfcomplaint type) {
-		if(type!=null) {
-		this.type = type.getCode();}
-	}
+    private String location;
 
-	public String getDescription() {
-		return description;
-	}
+    private byte[] media;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @ManyToOne
+    @JoinColumn(name = "TB_USER/ID")
+    @JsonIgnoreProperties({"event", "complaint"})
+    private User user;
 
-	public LocalDateTime getDateTime() {
-		return dateTime;
-	}
+    public Complaint() {
 
-	public void setDateTime(LocalDateTime dateTime) {
-		this.dateTime = dateTime;
-	}
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public Complaint(Integer id, TypeOfcomplaint type, String description, LocalDateTime dateTime, String location,
+                     byte[] media, User user) {
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+        this.id = id;
+        setType(type);
+        this.description = description;
+        this.dateTime = dateTime;
+        this.location = location;
+        this.media = media;
+        this.user = user;
+    }
 
-	public byte[] getMedia() {
-		return media;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setMedia(byte[] media) {
-		this.media = media;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public User getUsuario() {
-		return usuario;
-	}
+    public TypeOfcomplaint getType() throws IllegalAccessException {
+        return TypeOfcomplaint.valueOf(type);
+    }
 
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
-	}
+    public void setType(TypeOfcomplaint type) {
+        if (type != null) {
+            this.type = type.getCode();
+        }
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(description, id);
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Complaint other = (Complaint) obj;
-		return Objects.equals(description, other.description) && Objects.equals(id, other.id);
-	}
-	
-	
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public byte[] getMedia() {
+        return media;
+    }
+
+    public void setMedia(byte[] media) {
+        this.media = media;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Complaint other = (Complaint) obj;
+        return Objects.equals(description, other.description) && Objects.equals(id, other.id);
+    }
+
+
 }

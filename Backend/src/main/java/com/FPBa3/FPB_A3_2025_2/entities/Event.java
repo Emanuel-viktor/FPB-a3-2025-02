@@ -1,7 +1,9 @@
 package com.FPBa3.FPB_A3_2025_2.entities;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -13,118 +15,119 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name="tb_event")
+@Table(name = "tb_event")
 
 public class Event implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String name;
-	private String description;
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private LocalDateTime dateTime;
-	private String location;
-	private byte[] poster;
-	@ManyToOne
-	@JoinColumn(name = "TB_USER/ID")
-	@JsonIgnoreProperties({"event", "complaint"}) 
-	private User usuario;
-	
-	public Event () {
-					
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Event(Integer id, String name, String description, LocalDateTime dateTime, String location, byte[] poster,
-			User usuario) {
-		
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.dateTime = dateTime;
-		this.location = location;
-		this.poster = poster;
-		this.usuario = usuario;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    private String name;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String description;
 
-	public String getName() {
-		return name;
-	}
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    private LocalDateTime dateTime;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String location;
 
-	public String getDescription() {
-		return description;
-	}
+    private byte[] poster;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @ManyToOne
+    @JoinColumn(name = "TB_USER/ID")
+    @JsonIgnoreProperties({"event", "complaint"})
+    private User user;
 
-	public LocalDateTime getDateTime() {
-		return dateTime;
-	}
+    public Event() {
+    }
 
-	public void setDateTime(LocalDateTime dateTime) {
-		this.dateTime = dateTime;
-	}
+    public Event(Integer id, String name, String description, LocalDateTime dateTime, String location, byte[] poster,
+                 User user) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.dateTime = dateTime;
+        this.location = location;
+        this.poster = poster;
+        this.user = user;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public byte[] getPoster() {
-		return poster;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPoster(byte[] poster) {
-		this.poster = poster;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public User getUsuario() {
-		return usuario;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Event other = (Event) obj;
-		return Objects.equals(id, other.id);
-	}
-	
-	
-	
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public byte[] getPoster() {
+        return poster;
+    }
+
+    public void setPoster(byte[] poster) {
+        this.poster = poster;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Event other = (Event) obj;
+        return Objects.equals(id, other.id);
+    }
 }
