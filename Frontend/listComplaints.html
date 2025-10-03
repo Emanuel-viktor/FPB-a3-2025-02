@@ -162,6 +162,12 @@
   <script>
     const baseUrl = "http://localhost:8080/complaints";
 
+    function formatDate(dateTimeLocal) {
+    const [date, time] = dateTimeLocal.split("T");
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year} ${time}`;
+  }
+
     function carregarDenuncias(url) {
       fetch(url)
         .then(response => response.json())

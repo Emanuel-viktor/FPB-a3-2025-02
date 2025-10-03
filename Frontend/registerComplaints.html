@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Denuncias</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      background-color: #0a0a0a;
+    }
+    .sidebar {
+      font-size: 23px;
+      width: 220px;
+      background: #161a1d;
+      border-right: 2px solid #ee0e0e;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+    .sidebar h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .sidebar a {
+      
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #ddd;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background: #ee0e0e;
+      color: #fff;
+    }
+    .content {
+       flex: 1;
+       padding: 40px;
+       display: flex;
+       justify-content: center;  
+       align-items: center;      
+      flex-direction: column; 
+      flex: 1;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 50px;
+      text-align: center;
+      color: #ece7e7;
+      margin-bottom: 10px;
+    }
+    form {
+      font-size: 40px;
+      background: #161a1d;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      
+    }
+    label {
+      
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 35px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border: none;
+      background: #222;
+      color: #fff;
+      font-size: 20px;
+      
+    }
+    button {
+      background: #ee0e0e;
+      color: #fff;
+      border: none;
+      padding: 20px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    button:hover {
+      background: #b20b0b;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <a href="principal.html">Tela Principal</a>
+    <a href="listComplaints.html">Lista de Denúncias</a>
+    <a href="listEvents.html">Lista de Eventos</a>
+    <a href="registerevents.html">Registrar eventos</a>
+    <a href="creditos.html">Créditos</a>
+  </div>
+
+  <div class="content">
+    <h1>Cadastro de Denuncias</h1>
+    <form id="complaintsForm">
+      <label for="type">Ocorrencia</label>
+      <input type="text" id="type" type="type" required>
+
+      <label for="description">Descrição:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="dateTime">Data e Hora:</label>
+      <input type="datetime-local" id="dateTime" name="dateTime" required>
+
+      <label for="location">Local:</label>
+      <input type="text" id="location" name="location" required>
+
+      <button type="submit">Cadastrar Denuncia</button>
+    </form>
+  </div>
+<script>
+  document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // evita recarregar a página
+
+    function formatDate(dateTimeLocal) {
+      const [date, time] = dateTimeLocal.split("T");
+      const [year, month, day] = date.split("-");
+      return `${day}/${month}/${year} ${time}`;
+    }
+
+    const denuncia = {
+      type: document.getElementById("type").value,
+      description: document.getElementById("description").value,
+      dateTime: formatDate(document.getElementById("dateTime").value),
+      location: document.getElementById("location").value,
+      poster: null
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/complaints", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(denuncia)
+      });
+
+      if (response.ok) {
+        alert("✅ Denuncia cadastrada com sucesso!");
+        document.getElementById("eventForm").reset();
+
+        
+      } else {
+        const errorText = await response.text();
+        alert("❌ Erro ao cadastrar denuncia: " + errorText);
+      }
+    } catch (err) {
+      alert("⚠️ Falha na conexão com o servidor: " + err.message);
+    }
+  });
+</script>
