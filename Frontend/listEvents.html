@@ -155,74 +155,84 @@
   </div>
 
   <script>
-    const baseUrl = "http://localhost:8080/events";
+    
+  const baseUrl = "http://localhost:8080/events";
 
-    function carregarEventos(url) {
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const tbody = document.getElementById("eventTable");
-          tbody.innerHTML = ""; // limpa antes de adicionar novos
+  // Função para formatar data ISO -> dd/MM/yyyy HH:mm
+  function formatDate(dateTimeLocal) {
+    const [date, time] = dateTimeLocal.split("T");
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year} ${time}`;
+  }
 
-          data.forEach(evento => {
-            const tr = document.createElement("tr");
+  function carregarEventos(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.getElementById("eventTable");
+        tbody.innerHTML = ""; // limpa antes de adicionar novos
 
-            const tdId = document.createElement("td");
-            tdId.textContent = evento.id;
-            tr.appendChild(tdId);
+        data.forEach(evento => {
+          const tr = document.createElement("tr");
 
-            const tdNome = document.createElement("td");
-            tdNome.textContent = evento.name;
-            tr.appendChild(tdNome);
+          const tdId = document.createElement("td");
+          tdId.textContent = evento.id;
+          tr.appendChild(tdId);
 
-            const tdDesc = document.createElement("td");
-            tdDesc.textContent = evento.description;
-            tr.appendChild(tdDesc);
+          const tdNome = document.createElement("td");
+          tdNome.textContent = evento.name;
+          tr.appendChild(tdNome);
 
-            const tdData = document.createElement("td");
-            tdData.textContent = evento.dateTime; 
-            tr.appendChild(tdData);
+          const tdDesc = document.createElement("td");
+          tdDesc.textContent = evento.description;
+          tr.appendChild(tdDesc);
 
-            const tdLocal = document.createElement("td");
-            tdLocal.textContent = evento.location;
-            tr.appendChild(tdLocal);
+          const tdData = document.createElement("td");
+          tdData.textContent = evento.dateTime;
+          tr.appendChild(tdData);
 
-            const tdUsuario = document.createElement("td");
-            tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
-            tr.appendChild(tdUsuario);
+          const tdLocal = document.createElement("td");
+          tdLocal.textContent = evento.location;
+          tr.appendChild(tdLocal);
 
-            const tdPoster = document.createElement("td");
-            if (evento.poster) {
-              const img = document.createElement("img");
-              img.classList.add("poster");
-              img.src = "data:image/png;base64," + evento.poster;
-              tdPoster.appendChild(img);
-            } else {
-              tdPoster.textContent = "—";
-            }
-            tr.appendChild(tdPoster);
+          const tdUsuario = document.createElement("td");
+          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
+          tr.appendChild(tdUsuario);
 
-            tbody.appendChild(tr);
-          });
-        })
-        .catch(error => console.error("Erro ao buscar eventos:", error));
+          const tdPoster = document.createElement("td");
+          if (evento.poster) {
+            const img = document.createElement("img");
+            img.classList.add("poster");
+            img.src = "data:image/png;base64," + evento.poster;
+            tdPoster.appendChild(img);
+          } else {
+            tdPoster.textContent = "—";
+          }
+          tr.appendChild(tdPoster);
+
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(error => console.error("Erro ao buscar eventos:", error));
+  }
+
+  // Função do filtro
+  function filtrar() {
+    const inicio = document.getElementById("inicio").value;
+    const fim = document.getElementById("fim").value;
+
+    if (inicio && fim) {
+      // aplica formatação para o formato do back
+      const inicioFormatado = formatDate(inicio);
+      const fimFormatado = formatDate(fim);
+
+      const url = `${baseUrl}/period?inicio=${encodeURIComponent(inicioFormatado)}&fim=${encodeURIComponent(fimFormatado)}`;
+      carregarEventos(url);
+    } else {
+      alert("Preencha as duas datas para aplicar o filtro!");
     }
+  }
 
-    // Função do filtro
-    function filtrar() {
-      const inicio = document.getElementById("inicio").value;
-      const fim = document.getElementById("fim").value;
-
-      if (inicio && fim) {
-        const url = `${baseUrl}/period?inicio=${inicio}&fim=${fim}`;
-        carregarEventos(url);
-      } else {
-        alert("Preencha as duas datas para aplicar o filtro!");
-      }
-    }
-
-    // Carrega todos os eventos ao iniciar
-    carregarEventos(baseUrl);
-  </script>
-</body>
-</html>
+  // Carrega todos os eventos ao iniciar
+  carregarEventos(baseUrl);
+</script>
