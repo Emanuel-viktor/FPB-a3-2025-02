@@ -1,4 +1,4 @@
-package com.FPBa3.FPB_A3_2025_2.resources;
+package com.FPBa3.FPB_A3_2025_2.controllers;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -22,26 +22,24 @@ import com.FPBa3.FPB_A3_2025_2.services.EventService;
 
 @RestController
 @RequestMapping(value = "/events")
-public class EventResource {
+public class EventController {
 
 	@Autowired
 	private EventService eventService;
 
 	@GetMapping
 	public ResponseEntity<List<Event>> findAll() {
-
 		List<Event> list = eventService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Event> findById(@PathVariable Integer id) {
-		Event obj = eventService.findBYid(id);
+		Event obj = eventService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@PostMapping
-
 	public ResponseEntity<Event> insert(@RequestBody Event obj) {
 		obj = eventService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -49,22 +47,21 @@ public class EventResource {
 	}
 
 	@DeleteMapping(value = "/{id}")
-
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		eventService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	@GetMapping("/period")
-	public List<Event> getEventosPorPeriodo(
-	        @RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime inicio,
-	        @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fim) {
-	    return eventService.buscarPorPeriodo(inicio, fim);
+	public List<Event> getEventsByPeriod(
+	        @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+	        @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
+	    return eventService.findByPeriod(start, end);
 	}
 
 	@GetMapping("/day")
-	public List<Event> getEventosPorDia(
-	        @RequestParam("data") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data) {
-	    return eventService.buscarPorDia(data);
+	public List<Event> getEventsByDay(
+	        @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+	    return eventService.findByDay(date);
 	}
 	@PutMapping(value ="/{id}")
 	

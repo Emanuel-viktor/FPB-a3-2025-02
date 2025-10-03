@@ -12,10 +12,9 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Integer>{
 	
 	List<Complaint> findByDateTimeBetween(LocalDateTime start, LocalDateTime end);
 
-	   
-    default List<Complaint> findByDia(LocalDate data) {
-        LocalDateTime startOfDay = data.atStartOfDay();
-        LocalDateTime endOfDay = data.atTime(23, 59, 59);
+    default List<Complaint> findByDay(LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(23, 59, 59);
         return findByDateTimeBetween(startOfDay, endOfDay);
     }
 
