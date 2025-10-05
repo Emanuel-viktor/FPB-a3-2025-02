@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Eventos</title>
+  <title>Cadastro de Denuncias</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -102,14 +102,15 @@
     <a href="principal.html">Tela Principal</a>
     <a href="listComplaints.html">Lista de Denúncias</a>
     <a href="listEvents.html">Lista de Eventos</a>
+    <a href="registerevents.html">Registrar eventos</a>
     <a href="creditos.html">Créditos</a>
   </div>
 
   <div class="content">
-    <h1>Cadastro de Eventos</h1>
-    <form id="eventForm">
-      <label for="name">Nome do Evento:</label>
-      <input type="text" id="name" name="name" required>
+    <h1>Cadastro de Denuncias</h1>
+    <form id="complaintsForm">
+      <label for="type">Ocorrencia</label>
+      <input type="text" id="type" type="type" required>
 
       <label for="description">Descrição:</label>
       <textarea id="description" name="description" rows="4" required></textarea>
@@ -120,11 +121,11 @@
       <label for="location">Local:</label>
       <input type="text" id="location" name="location" required>
 
-      <button type="submit">Cadastrar Evento</button>
+      <button type="submit">Cadastrar Denuncia</button>
     </form>
   </div>
 <script>
-  document.getElementById("eventForm").addEventListener("submit", async function(e) {
+  document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
     e.preventDefault(); // evita recarregar a página
 
     function formatDate(dateTimeLocal) {
@@ -133,8 +134,8 @@
       return `${day}/${month}/${year} ${time}`;
     }
 
-    const evento = {
-      name: document.getElementById("name").value,
+    const denuncia = {
+      type: document.getElementById("type").value,
       description: document.getElementById("description").value,
       dateTime: formatDate(document.getElementById("dateTime").value),
       location: document.getElementById("location").value,
@@ -142,22 +143,22 @@
     };
 
     try {
-      const response = await fetch("http://localhost:8080/events", {
+      const response = await fetch("http://localhost:8080/complaints", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(evento)
+        body: JSON.stringify(denuncia)
       });
 
       if (response.ok) {
-        alert("✅ Evento cadastrado com sucesso!");
+        alert("✅ Denuncia cadastrada com sucesso!");
         document.getElementById("eventForm").reset();
 
         
       } else {
         const errorText = await response.text();
-        alert("❌ Erro ao cadastrar evento: " + errorText);
+        alert("❌ Erro ao cadastrar denuncia: " + errorText);
       }
     } catch (err) {
       alert("⚠️ Falha na conexão com o servidor: " + err.message);
