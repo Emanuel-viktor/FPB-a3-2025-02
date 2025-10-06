@@ -12,88 +12,98 @@
       height: 100vh;
       background-color: #0a0a0a;
     }
+
     .sidebar {
-      font-size: 23px;
-      width: 220px;
+      font-size: 16px;
+      width: 200px;
       background: #161a1d;
       border-right: 2px solid #ee0e0e;
       display: flex;
       flex-direction: column;
       padding-top: 20px;
     }
+
     .sidebar h2 {
       text-align: center;
       color: #fff;
       margin-bottom: 20px;
+      font-size: 20px;
     }
+
     .sidebar a {
-      
-      padding: 12px 20px;
+      padding: 10px 15px;
       text-decoration: none;
       color: #ddd;
       font-weight: bold;
       transition: 0.3s;
+      font-size: 14px;
     }
+
     .sidebar a:hover {
       background: #ee0e0e;
       color: #fff;
     }
+
     .content {
-       flex: 1;
-       padding: 40px;
-       display: flex;
-       justify-content: center;  
-       align-items: center;      
-      flex-direction: column; 
       flex: 1;
-      padding: 40px;
+      padding: 30px;
+      display: flex;
+      justify-content: center;  
+      align-items: center;      
+      flex-direction: column; 
     }
+
     h1 {
-      font-size: 50px;
+      font-size: 28px;
       text-align: center;
       color: #ece7e7;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
+
     form {
-      font-size: 40px;
+      font-size: 16px;
       background: #161a1d;
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 500px;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 100%;
       color: #fff;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      
     }
+
     label {
-      
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-weight: bold;
+      font-size: 14px;
     }
+
     input, textarea {
-      width: 90%;
-      padding: 35px;
-      margin-bottom: 20px;
-      border-radius: 15px;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
       border: none;
       background: #222;
       color: #fff;
-      font-size: 20px;
-      
+      font-size: 14px;
     }
+
     button {
       background: #ee0e0e;
       color: #fff;
       border: none;
-      padding: 20px 20px;
-      border-radius: 5px;
+      padding: 12px 18px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 15px;
+      font-weight: bold;
+      width: 100%;
     }
+
     button:hover {
       background: #b20b0b;
     }
-  
   </style>
 </head>
 <body>
@@ -109,8 +119,8 @@
   <div class="content">
     <h1>Cadastro de Denuncias</h1>
     <form id="complaintsForm">
-      <label for="type">Ocorrencia</label>
-      <input type="text" id="type" type="type" required>
+      <label for="type">Ocorrência:</label>
+      <input type="text" id="type" required>
 
       <label for="description">Descrição:</label>
       <textarea id="description" name="description" rows="4" required></textarea>
@@ -121,12 +131,13 @@
       <label for="location">Local:</label>
       <input type="text" id="location" name="location" required>
 
-      <button type="submit">Cadastrar Denuncia</button>
+      <button type="submit">Cadastrar Denúncia</button>
     </form>
   </div>
+
 <script>
   document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // evita recarregar a página
+    e.preventDefault(); 
 
     function formatDate(dateTimeLocal) {
       const [date, time] = dateTimeLocal.split("T");
@@ -152,16 +163,16 @@
       });
 
       if (response.ok) {
-        alert("✅ Denuncia cadastrada com sucesso!");
-        document.getElementById("eventForm").reset();
-
-        
+        alert("✅ Denúncia cadastrada com sucesso!");
+        document.getElementById("complaintsForm").reset();
       } else {
         const errorText = await response.text();
-        alert("❌ Erro ao cadastrar denuncia: " + errorText);
+        alert("❌ Erro ao cadastrar denúncia: " + errorText);
       }
     } catch (err) {
       alert("⚠️ Falha na conexão com o servidor: " + err.message);
     }
   });
 </script>
+</body>
+</html>
