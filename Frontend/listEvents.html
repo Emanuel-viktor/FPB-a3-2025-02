@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Lista de Eventos</title>
-  <br>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,9 +12,10 @@
       background: #0a0a0a;
     }
 
+    /* ===== SIDEBAR ===== */
     .sidebar {
-      font-size: 23px;
-      width: 220px;
+      font-size: 16px;
+      width: 200px;
       background: #161a1d;
       border-right: 2px solid #ee0e0e;
       display: flex;
@@ -27,14 +27,16 @@
       text-align: center;
       color: #fff;
       margin-bottom: 20px;
+      font-size: 20px;
     }
 
     .sidebar a {
-      padding: 12px 20px;
+      padding: 10px 15px;
       text-decoration: none;
       color: #ddd;
       font-weight: bold;
       transition: 0.3s;
+      font-size: 14px;
     }
 
     .sidebar a:hover {
@@ -42,6 +44,7 @@
       color: #fff;
     }
 
+    /* ===== CONTEÚDO ===== */
     .content {
       flex: 1;
       padding: 20px;
@@ -49,8 +52,9 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 28px;
       color: #ece7e7;
+      margin-bottom: 15px;
     }
 
     table {
@@ -60,11 +64,12 @@
       background: #ece7e7;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+      font-size: 14px;
     }
 
     th, td {
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ee0e0e;
       text-align: left;
     }
@@ -72,35 +77,38 @@
     th {
       background: #161a1d;
       color: #fff;
+      font-size: 14px;
     }
 
     tr:nth-child(even) {
-      background: #b6a8a8;
+      background: #d6d6d6;
     }
 
     .poster {
-      max-width: 100px;
+      max-width: 80px;
       border-radius: 4px;
     }
 
     /* ===== FILTRO ===== */
     .filter-box {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #161a1d;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
       color: #fff;
+      font-size: 14px;
     }
 
     .filter-box label {
-      margin-right: 10px;
+      margin-right: 8px;
     }
 
     .filter-box input {
-      margin-right: 15px;
-      padding: 5px;
+      margin-right: 12px;
+      padding: 6px;
       border-radius: 5px;
       border: 1px solid #ee0e0e;
+      font-size: 13px;
     }
 
     .filter-box button {
@@ -111,6 +119,7 @@
       color: #fff;
       font-weight: bold;
       cursor: pointer;
+      font-size: 13px;
     }
 
     .filter-box button:hover {
@@ -123,8 +132,9 @@
   <div class="sidebar">
     <h2>Menu</h2>
     <a href="principal.html">Tela Principal</a>
+     <a href="listComplaints.html">Lista de Denúncias</a>
+     <a href="registerComplaints.html">Registrar Denuncias</a>
     <a href="registerevents.html">Registrar eventos</a>
-    <a href="listComplaints.html">Lista de Denúncias</a>
     <a href="creditos.html">Créditos</a>
   </div>
 
@@ -157,7 +167,6 @@
   </div>
 
   <script>
-    
   const baseUrl = "http://localhost:8080/events";
 
   // Função para formatar data ISO -> dd/MM/yyyy HH:mm
@@ -172,7 +181,7 @@
       .then(response => response.json())
       .then(data => {
         const tbody = document.getElementById("eventTable");
-        tbody.innerHTML = ""; // limpa antes de adicionar novos
+        tbody.innerHTML = "";
 
         data.forEach(evento => {
           const tr = document.createElement("tr");
@@ -224,7 +233,6 @@
     const fim = document.getElementById("fim").value;
 
     if (inicio && fim) {
-      // aplica formatação para o formato do back
       const inicioFormatado = formatDate(inicio);
       const fimFormatado = formatDate(fim);
 
@@ -238,3 +246,5 @@
   // Carrega todos os eventos ao iniciar
   carregarEventos(baseUrl);
 </script>
+</body>
+</html>

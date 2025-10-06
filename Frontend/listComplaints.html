@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Denúncias</title>
-  <br>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,8 +14,8 @@
 
     /* ===== SIDEBAR ===== */
     .sidebar {
-      font-size: 23px;
-      width: 220px;
+      font-size: 16px;
+      width: 200px;
       background: #161a1d;
       border-right: 2px solid #ee0e0e;
       display: flex;
@@ -28,14 +27,16 @@
       text-align: center;
       color: #fff;
       margin-bottom: 20px;
+      font-size: 20px;
     }
 
     .sidebar a {
-      padding: 12px 20px;
+      padding: 10px 15px;
       text-decoration: none;
       color: #ddd;
       font-weight: bold;
       transition: 0.3s;
+      font-size: 14px;
     }
 
     .sidebar a:hover {
@@ -51,22 +52,24 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 28px;
       color: #ece7e7;
+      margin-bottom: 15px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
-      background:#ece7e7;
+      background: #ece7e7;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+      font-size: 14px;
     }
 
     th, td {
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ee0e0e;
       text-align: left;
     }
@@ -74,35 +77,38 @@
     th {
       background: #161a1d;
       color: #fff;
+      font-size: 14px;
     }
 
     tr:nth-child(even) {
-      background: #b6a8a8;
+      background: #d6d6d6;
     }
 
     .media {
-      max-width: 100px;
+      max-width: 80px;
       border-radius: 4px;
     }
 
     /* ===== FILTRO ===== */
     .filter-box {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #161a1d;
-      padding: 15px;
+      padding: 12px;
       border-radius: 8px;
       color: #fff;
+      font-size: 14px;
     }
 
     .filter-box label {
-      margin-right: 10px;
+      margin-right: 8px;
     }
 
     .filter-box input {
-      margin-right: 15px;
-      padding: 5px;
+      margin-right: 12px;
+      padding: 6px;
       border-radius: 5px;
       border: 1px solid #ee0e0e;
+      font-size: 13px;
     }
 
     .filter-box button {
@@ -113,6 +119,7 @@
       color: #fff;
       font-weight: bold;
       cursor: pointer;
+      font-size: 13px;
     }
 
     .filter-box button:hover {
@@ -125,8 +132,9 @@
   <div class="sidebar">
     <h2>Menu</h2>
     <a href="principal.html">Tela Principal</a>
+    <a href="registerComplaints.html">Registrar Denuncias</a>
+     <a href="listEvents.html">Lista de Eventos</a>
     <a href="registerevents.html">Registrar eventos</a>
-    <a href="listEvents.html">Lista de Eventos</a>
     <a href="creditos.html">Créditos</a>
   </div>
 
@@ -161,12 +169,6 @@
 
   <script>
     const baseUrl = "http://localhost:8080/complaints";
-
-    function formatDate(dateTimeLocal) {
-    const [date, time] = dateTimeLocal.split("T");
-    const [year, month, day] = date.split("-");
-    return `${day}/${month}/${year} ${time}`;
-  }
 
     function carregarDenuncias(url) {
       fetch(url)
