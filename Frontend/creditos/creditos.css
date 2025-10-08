@@ -1,8 +1,10 @@
-
+html, body {
+  background-color: red;
+}
 
 .dev-card {
   
-  background-color: #383737;
+  background-color: #151515;
   padding: 20px;
   border-radius: 12px;
   width: 250px;
