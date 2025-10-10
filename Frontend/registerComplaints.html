@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Denuncias</title>
+  <title>Cadastro de Denúncias</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       display: flex;
       height: 100vh;
-      background-color: #0a0a0a;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
     }
 
     .sidebar {
       font-size: 16px;
-      width: 200px;
+      width: 220px;
       background: #161a1d;
       border-right: 2px solid #ee0e0e;
       display: flex;
@@ -27,16 +27,16 @@
       text-align: center;
       color: #fff;
       margin-bottom: 20px;
-      font-size: 20px;
+      font-size: 35px;
     }
 
     .sidebar a {
-      padding: 10px 15px;
+      padding: 25px 18px;
       text-decoration: none;
       color: #ddd;
       font-weight: bold;
-      transition: 0.3s;
-      font-size: 14px;
+      transition: 0.90s;
+      font-size: 20px;
     }
 
     .sidebar a:hover {
@@ -46,78 +46,104 @@
 
     .content {
       flex: 1;
-      padding: 30px;
       display: flex;
-      justify-content: center;  
-      align-items: center;      
-      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 40px;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 45px;
       text-align: center;
       color: #ece7e7;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
+    h1::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        margin: 10px auto;
+        background: #ee0e0e;
+        border-radius: 3px;
+}
+
 
     form {
-      font-size: 16px;
+      font-size: 18px;
       background: #161a1d;
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 450px;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 700px;
       width: 100%;
       color: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 25px rgba(238, 14, 14, 0.4);
     }
 
     label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     input, textarea {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 10px;
       border: none;
       background: #222;
       color: #fff;
-      font-size: 14px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
     }
 
     button {
       background: #ee0e0e;
       color: #fff;
       border: none;
-      padding: 12px 18px;
-      border-radius: 6px;
+      padding: 14px 20px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: bold;
       width: 100%;
+      transition: 0.3s;
     }
 
     button:hover {
       background: #b20b0b;
+      transform: scale(1.02);
     }
+    form {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 <body>
   <div class="sidebar">
     <h2>Menu</h2>
+    <br>
     <a href="principal.html">Tela Principal</a>
     <a href="listComplaints.html">Lista de Denúncias</a>
     <a href="listEvents.html">Lista de Eventos</a>
-    <a href="registerevents.html">Registrar eventos</a>
+    <a href="registerevents.html">Registrar Eventos</a>
     <a href="creditos.html">Créditos</a>
   </div>
 
   <div class="content">
-    <h1>Cadastro de Denuncias</h1>
+    <h1>Cadastro de Denúncias</h1>
     <form id="complaintsForm">
       <label for="type">Ocorrência:</label>
       <input type="text" id="type" required>
@@ -134,7 +160,8 @@
       <button type="submit">Cadastrar Denúncia</button>
     </form>
   </div>
-
+</body>
+</html>
 <script>
   document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
     e.preventDefault(); 
