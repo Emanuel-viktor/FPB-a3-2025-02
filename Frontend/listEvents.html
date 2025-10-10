@@ -207,7 +207,7 @@
           tr.appendChild(tdLocal);
 
           const tdUsuario = document.createElement("td");
-          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "—";
+          tdUsuario.textContent = evento.usuario ? evento.usuario.name : "Anonimo";
           tr.appendChild(tdUsuario);
 
           const tdPoster = document.createElement("td");
@@ -217,7 +217,7 @@
             img.src = "data:image/png;base64," + evento.poster;
             tdPoster.appendChild(img);
           } else {
-            tdPoster.textContent = "—";
+            tdPoster.textContent = "-";
           }
           tr.appendChild(tdPoster);
 

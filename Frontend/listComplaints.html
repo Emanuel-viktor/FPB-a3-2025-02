@@ -207,12 +207,12 @@
               img.src = "data:image/png;base64," + denuncia.media;
               tdMedia.appendChild(img);
             } else {
-              tdMedia.textContent = "—";
+              tdMedia.textContent = "-";
             }
             tr.appendChild(tdMedia);
 
             const tdUsuario = document.createElement("td");
-            tdUsuario.textContent = denuncia.usuario ? denuncia.usuario.name : "—";
+            tdUsuario.textContent = denuncia.usuario ? denuncia.usuario.name : "Anonimo";
             tr.appendChild(tdUsuario);
 
             tbody.appendChild(tr);
