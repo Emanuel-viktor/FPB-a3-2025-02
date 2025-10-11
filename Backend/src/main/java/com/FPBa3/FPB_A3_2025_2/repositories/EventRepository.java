@@ -14,9 +14,9 @@ public interface EventRepository extends JpaRepository<Event, Integer>{
     List<Event> findByDateTimeBetween(LocalDateTime start, LocalDateTime end);
 
    
-    default List<Event> findByDia(LocalDate data) {
-        LocalDateTime startOfDay = data.atStartOfDay();
-        LocalDateTime endOfDay = data.atTime(23, 59, 59);
+    default List<Event> findByDay(LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(23, 59, 59);
         return findByDateTimeBetween(startOfDay, endOfDay);
     }
 }
