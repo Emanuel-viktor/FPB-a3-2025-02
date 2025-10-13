@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +28,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	@OneToMany(mappedBy = "usuario")
-	@JsonIgnoreProperties("usuario")  // evita loop (User -> Complaint -> User)
+	@JsonIgnoreProperties("usuario") 
 	private List<Complaint> complaint = new ArrayList<>();
 	
 	@OneToMany(mappedBy= "usuario")

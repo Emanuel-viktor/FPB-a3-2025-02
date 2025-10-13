@@ -1,47 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href ="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" href="logoalert.png" type="image/x-icon">
-    <link rel="stylesheet" href="estilos/style.css">
-    <link rel="stylesheet" href="estilos/media-query.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="shortcut icon" href="logoalert.png" type="image/x-icon">
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/media-query.css">
 </head>
 <body>
-    <main>
-        <section id="login">
-            <div id="imagem"></div>
-            <div id="form">
-                <h1>Login</h1>
-                <p>Seja bem-vindo(a). Faça login para acessar sua conta.</p>
-                <form action="form.html" method="post" autocomplete="on">
-                    <div class="campo"> 
-                        <span class="material-icons">person</span>
-                        <input type="email" name="ilogi" id="login" placeholder="E-mail" maxlength="20">
-                        <label for="login"></label>
-                    </div>
-                    <div  class="campo">
-                        <span class="material-icons">vpn_key</span>
-                        <input type="password" name="isenha" id="senha" placeholder="Senha" required autocomplete="current-password" minlength="8" maxlength="15">
-                        <label for="senha"></label>
-                    </div>
-                    <input type="submit" value="Entrar">
-                    <a href="cadastro.html" class="botao">
-                    Cadastro <span class="material-icons">person_add</span> 
-                    </a>
-                </form>
-            </div>
-        </section>
-    </main>
-    <script>
-        const iusername=document.querySelector("#nome")
-        const inome = document.querySelector("#email");
-        const isenha=document.querySelector("#senha");
+  <main>
+    <section id="login">
+      <div id="imagem"></div>
+      <div id="form">
+        <h1>Login</h1>
+        <p>Seja bem-vindo(a). Faça login para acessar sua conta.</p>
 
+        
+        <form onsubmit="fazerLogin(event)" autocomplete="on">
+          <div class="campo"> 
+            <span class="material-icons">person</span>
+            <input type="email" id="email" placeholder="E-mail" maxlength="30" required>
+          </div>
 
-    </script>
+          <div class="campo">
+            <span class="material-icons">vpn_key</span>
+            <input type="password" id="senha" placeholder="Senha" required minlength="4" maxlength="15">
+          </div>
+
+          <input type="submit" value="Entrar">
+
+          <a href="cadastro.html" class="botao">
+            Cadastro <span class="material-icons">person_add</span>
+          </a>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function fazerLogin(event) {
+      event.preventDefault(); 
+
+      const email = document.querySelector("#email").value;
+      const senha = document.querySelector("#senha").value;
+
+      fetch("http://localhost:8080/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: senha })
+      })
+      .then(response => {
+        if (response.ok) return response.json();
+        throw new Error("Email ou senha incorretos!");
+      })
+      .then(user => {
+        localStorage.setItem("username", user.name);
+        window.location.href = "listEvents.html";
+      })
+      .catch(error => alert(error.message));
+    }
+  </script>
 </body>
 </html>
