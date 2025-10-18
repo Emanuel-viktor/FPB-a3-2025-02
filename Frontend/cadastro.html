@@ -1,44 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href ="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" href="logoalert.png" type="image/x-icon">
-    <link rel="stylesheet" href="estilos/style.css">
-    <link rel="stylesheet" href="estilos/media-query.css">
-    <link rel="shortcut icon" href="imagens/image.png" type="image/x-icon">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/media-query.css">
 </head>
 <body>
-    <main>
-        <section id="login">
-            <div id="imagem"></div>
-            <div id="form">
-                <h1>Cadastro</h1>
-                <p>Seja bem-vindo(a). Faça cadastro para acessar sua conta.</p>
-                <form action="form.html" method="post" autocomplete="on">
-                    <div class="campo">
-                        <span class="material-icons">person</span>
-                        <input type="text" autocomplete="on" required minlength="5" maxlength="8" placeholder="Digite seu nome">
-                    </div>
-                    <div class="campo"> 
-                        <span class="material-icons">mail</span>
-                        <input type="email" name="ilogi" id="login" placeholder="Digite seu e-mail" maxlength="20" required>
-                        <label for="login"></label>
-                    </div>
-                    <div  class="campo">
-                        <span class="material-icons">vpn_key</span>
-                        <input type="password" name="isenha" id="senha" placeholder="Digite sua senha" required autocomplete="current-password" minlength="8" maxlength="15">
-                    <label for="senha"></label>
-                        
-                </div>
-                <input type="submit" value="Entrar" class="entrar">
-                </a>
-                </form>
-            </div>
-        </section>
-    </main>
+  <main>
+    <section id="login">
+      <div id="imagem"></div>
+      <div id="form">
+        <h1>Cadastro</h1>
+        <p>Seja bem-vindo(a). Faça cadastro para acessar sua conta.</p>
+
+        
+        <form onsubmit="cadastrar(event)" autocomplete="on">
+          <div class="campo">
+            <span class="material-icons">person</span>
+            <input type="text" id="name" required minlength="3" maxlength="30" placeholder="Digite seu nome">
+          </div>
+
+          <div class="campo">
+            <span class="material-icons">mail</span>
+            <input type="email" id="email" placeholder="Digite seu e-mail" maxlength="35" required>
+          </div>
+
+          <div class="campo">
+            <span class="material-icons">vpn_key</span>
+            <input type="password" id="senha" placeholder="Digite sua senha" required minlength="6" maxlength="15">
+          </div>
+
+          <input type="submit" value="Cadastrar" class="entrar">
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function cadastrar(event) {
+      event.preventDefault(); 
+
+      const name = document.querySelector("#name").value;
+      const email = document.querySelector("#email").value;
+      const senha = document.querySelector("#senha").value;
+
+      fetch("http://localhost:8080/users", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: senha
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("Usuário cadastrado com sucesso!");
+          window.location.href = "login.html"; 
+        } else {
+          alert("Erro ao cadastrar. Código: " + res.status);
+        }
+      })
+      .catch(err => {
+        console.error("Erro na requisição:", err);
+        alert("Erro na requisição: " + err.message);
+      });
+    }
+  </script>
 </body>
 </html>

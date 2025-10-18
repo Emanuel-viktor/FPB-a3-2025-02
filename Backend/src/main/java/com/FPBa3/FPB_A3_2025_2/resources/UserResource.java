@@ -65,7 +65,7 @@ public class UserResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    // ✅ LOGIN CORRIGIDO
+    
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
