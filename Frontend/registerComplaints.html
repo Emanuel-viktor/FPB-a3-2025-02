@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Denúncias</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -44,6 +45,44 @@
       color: #fff;
     }
 
+    .user-section {
+      margin-top: auto; 
+      padding: 20px 15px;
+      border-top: 1px solid #ee0e0e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: bold;
+      gap: 10px;
+    }
+
+    .logout-btn {
+      background-color: #ee0e0e;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .logout-btn:hover {
+      background-color: #b20b0b;
+      transform: scale(1.05);
+    }
+
     .content {
       flex: 1;
       display: flex;
@@ -59,16 +98,16 @@
       color: #ece7e7;
       margin-bottom: 30px;
     }
-    h1::after {
-        content: "";
-        display: block;
-        width: 60px;
-        height: 3px;
-        margin: 10px auto;
-        background: #ee0e0e;
-        border-radius: 3px;
-}
 
+    h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      margin: 10px auto;
+      background: #ee0e0e;
+      border-radius: 3px;
+    }
 
     form {
       font-size: 18px;
@@ -79,6 +118,7 @@
       width: 100%;
       color: #fff;
       box-shadow: 0 0 25px rgba(238, 14, 14, 0.4);
+      animation: fadeIn 0.8s ease;
     }
 
     label {
@@ -121,26 +161,32 @@
       background: #b20b0b;
       transform: scale(1.02);
     }
-    form {
-  animation: fadeIn 0.8s ease;
-}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <div class="sidebar">
     <h2>Menu</h2>
-    <br>
     <a href="principal.html">Tela Principal</a>
     <a href="listComplaints.html">Lista de Denúncias</a>
-    <a href="registerComplaints.html">Registrar Denúncias</a>
+    <a href="registerComplaints.html">Registrar Denúncia</a>
     <a href="listEvents.html">Lista de Eventos</a>
     <a href="registerevents.html">Registrar Eventos</a>
     <a href="creditos.html">Créditos</a>
+
+    <div class="user-section">
+      <div class="user-info">
+        <span class="material-icons" style="font-size:28px;">account_circle</span>
+        <span class="username"></span>
+      </div>
+      <button class="logout-btn">
+        <span class="material-icons" style="font-size:20px;">logout</span> Sair
+      </button>
+    </div>
   </div>
 
   <div class="content">
@@ -161,54 +207,67 @@
       <button type="submit">Cadastrar Denúncia</button>
     </form>
   </div>
-</body>
-</html>
-<script>
+
+  <script>
     document.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-      btn.style.transform = "scale(1.05)";
-    });
-    btn.addEventListener("mouseleave", () => {
-      btn.style.transform = "scale(1)";
-    });
-  });
-  document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); 
-
-    function formatDate(dateTimeLocal) {
-      const [date, time] = dateTimeLocal.split("T");
-      const [year, month, day] = date.split("-");
-      return `${day}/${month}/${year} ${time}`;
-    }
-
-    const denuncia = {
-      type: document.getElementById("type").value,
-      description: document.getElementById("description").value,
-      dateTime: formatDate(document.getElementById("dateTime").value),
-      location: document.getElementById("location").value,
-      poster: null
-    };
-
-    try {
-      const response = await fetch("http://localhost:8080/complaints", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(denuncia)
+      btn.addEventListener("mouseenter", () => {
+        btn.style.transform = "scale(1.05)";
       });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "scale(1)";
+      });
+    });
 
-      if (response.ok) {
-        alert("✅ Denúncia cadastrada com sucesso!");
-        document.getElementById("complaintsForm").reset();
-      } else {
-        const errorText = await response.text();
-        alert("❌ Erro ao cadastrar denúncia: " + errorText);
+    document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
+      e.preventDefault(); 
+
+      function formatDate(dateTimeLocal) {
+        const [date, time] = dateTimeLocal.split("T");
+        const [year, month, day] = date.split("-");
+        return `${day}/${month}/${year} ${time}`;
       }
-    } catch (err) {
-      alert("⚠️ Falha na conexão com o servidor: " + err.message);
-    }
-  });
-</script>
+
+      const denuncia = {
+        type: document.getElementById("type").value,
+        description: document.getElementById("description").value,
+        dateTime: formatDate(document.getElementById("dateTime").value),
+        location: document.getElementById("location").value,
+        poster: null
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/complaints", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(denuncia)
+        });
+
+        if (response.ok) {
+          alert("✅ Denúncia cadastrada com sucesso!");
+          document.getElementById("complaintsForm").reset();
+        } else {
+          const errorText = await response.text();
+          alert("❌ Erro ao cadastrar denúncia: " + errorText);
+        }
+      } catch (err) {
+        alert("⚠️ Falha na conexão com o servidor: " + err.message);
+      }
+    });
+    const username = localStorage.getItem("username");
+
+
+if (username) {
+  document.querySelector(".username").textContent = username;
+} else {
+  document.querySelector(".username").textContent = "Anônimo";
+}
+
+document.querySelector(".logout-btn").addEventListener("click", () => {
+  localStorage.removeItem("username");
+  window.location.href = "login.html";
+});
+  </script>
 </body>
 </html>
