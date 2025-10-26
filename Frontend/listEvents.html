@@ -42,7 +42,7 @@
       background: #ee0e0e;
       color: #fff;
     }
-    /* ===== CONTEÚDO ===== */
+  
     .content {
       flex: 1;
       padding: 20px;
@@ -87,7 +87,7 @@
       border-radius: 4px;
     }
 
-    /* ===== FILTRO ===== */
+    
     .filter-box {
       margin-bottom: 15px;
       background: #161a1d;
@@ -132,6 +132,7 @@
     <a href="principal.html">Tela Principal</a>
      <a href="listComplaints.html">Lista de Denúncias</a>
      <a href="registerComplaints.html">Registrar Denuncias</a>
+     <a href="listEvents.html">Lista de eventos</a>
     <a href="registerevents.html">Registrar eventos</a>
     <a href="creditos.html">Créditos</a>
   </div>
@@ -139,7 +140,7 @@
   <div class="content">
     <h1>Lista de eventos</h1>
 
-    <!-- FILTRO -->
+  
     <div class="filter-box">
       <label for="inicio">Data Início:</label>
       <input type="datetime-local" id="inicio">
@@ -167,7 +168,7 @@
   <script>
   const baseUrl = "http://localhost:8080/events";
 
-  // Função para formatar data ISO -> dd/MM/yyyy HH:mm
+ 
   function formatDate(dateTimeLocal) {
     const [date, time] = dateTimeLocal.split("T");
     const [year, month, day] = date.split("-");
@@ -225,7 +226,7 @@
       .catch(error => console.error("Erro ao buscar eventos:", error));
   }
 
-  // Função do filtro
+ 
   function filtrar() {
     const inicio = document.getElementById("inicio").value;
     const fim = document.getElementById("fim").value;
@@ -241,7 +242,7 @@
     }
   }
 
-  // Carrega todos os eventos ao iniciar
+  
   carregarEventos(baseUrl);
 </script>
 </body>

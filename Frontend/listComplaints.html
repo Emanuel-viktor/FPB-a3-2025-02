@@ -41,7 +41,7 @@
       background: #ee0e0e;
       color: #fff;
     }
-    /* ===== CONTEÚDO ===== */
+   
     .content {
       flex: 1;
       padding: 20px;
@@ -86,7 +86,7 @@
       border-radius: 4px;
     }
 
-    /* ===== FILTRO ===== */
+  
     .filter-box {
       margin-bottom: 15px;
       background: #161a1d;
@@ -125,21 +125,22 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
+
   <div class="sidebar">
     <h2>Menu</h2>
     <a href="principal.html">Tela Principal</a>
+    <a href="listComplaints.html">Lista de denuncia</a>
     <a href="registerComplaints.html">Registrar Denuncias</a>
      <a href="listEvents.html">Lista de Eventos</a>
     <a href="registerevents.html">Registrar eventos</a>
     <a href="creditos/creditos.html">Créditos</a>
   </div>
 
-  <!-- Conteúdo -->
+
   <div class="content">
     <h1>Lista de denúncias</h1>
 
-    <!-- FILTRO -->
+ 
     <div class="filter-box">
       <label for="inicio">Data Início:</label>
       <input type="datetime-local" id="inicio">
@@ -172,7 +173,7 @@
         .then(response => response.json())
         .then(data => {
           const tbody = document.getElementById("complaintTable");
-          tbody.innerHTML = ""; // limpar antes de adicionar novos
+          tbody.innerHTML = ""; 
 
           data.forEach(denuncia => {
             const tr = document.createElement("tr");
@@ -218,7 +219,7 @@
         .catch(error => console.error("Erro ao buscar denúncias:", error));
     }
 
-    // Função do filtro
+    
     function filtrar() {
       const inicio = document.getElementById("inicio").value;
       const fim = document.getElementById("fim").value;
@@ -231,7 +232,7 @@
       }
     }
 
-    // Carrega todas denúncias ao iniciar
+    r
     carregarDenuncias(baseUrl);
   </script>
 </body>
