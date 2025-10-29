@@ -2,8 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Denúncias</title>
+  <title>Lista de Eventos</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
@@ -37,8 +36,11 @@
       text-decoration: none;
       color: #ddd;
       font-weight: bold;
-      transition: 0.3s;
+      transition: 0.9s;
       font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .sidebar a:hover {
@@ -46,94 +48,7 @@
       color: #fff;
     }
 
-  
-    .content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 40px;
-    }
-
-    h1 {
-      font-size: 45px;
-      text-align: center;
-      color: #ece7e7;
-      margin-bottom: 30px;
-      position: relative;
-    }
-
-    h1::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      margin: 10px auto;
-      background: #ee0e0e;
-      border-radius: 3px;
-    }
-
-   
-    form {
-      font-size: 18px;
-      background: #161a1d;
-      padding: 40px;
-      border-radius: 16px;
-      max-width: 700px;
-      width: 100%;
-      color: #fff;
-      box-shadow: 0 0 25px rgba(238, 14, 14, 0.4);
-      animation: fadeIn 0.8s ease;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      border: none;
-      background: #222;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    textarea {
-      resize: none;
-      height: 100px;
-    }
-
-    button {
-      background: #ee0e0e;
-      color: #fff;
-      border: none;
-      padding: 14px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 17px;
-      font-weight: bold;
-      width: 100%;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #b20b0b;
-      transform: scale(1.02);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    
+    /* Sessão do usuário */
     .user-section {
       margin-top: auto;
       padding: 20px 15px;
@@ -172,18 +87,111 @@
       transform: scale(1.05);
     }
 
+    
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ece7e7;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      margin: 10px auto;
+      background: #ee0e0e;
+      border-radius: 3px;
+    }
+
+    
+    .filter-box {
+      margin-bottom: 20px;
+      background: #161a1d;
+      padding: 12px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .filter-box label {
+      margin-right: 8px;
+    }
+
+    .filter-box input {
+      margin-right: 12px;
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #ee0e0e;
+      font-size: 13px;
+    }
+
+    .filter-box button {
+      padding: 6px 12px;
+      background: #ee0e0e;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .filter-box button:hover {
+      background: #b30c0c;
+    }
+
+    /* Tabela */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #ece7e7;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ee0e0e;
+      text-align: left;
+    }
+
+    th {
+      background: #161a1d;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+      background: #d6d6d6;
+    }
+
+    .poster {
+      max-width: 80px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
   <div class="sidebar">
     <h2>Menu</h2>
-    <a href="principal.html">Tela Principal</a>
-    <a href="listComplaints.html">Lista de Denúncias</a>
-    <a href="registerComplaints.html">Registrar Denúncia</a>
-    <a href="listEvents.html">Lista de Eventos</a>
-    <a href="registerevents.html">Registrar Eventos</a>
-    <a href="creditos.html">Créditos</a>
+    <a href="principal.html"><span class="material-icons">home</span> Tela Principal</a>
+    <a href="listComplaints.html"><span class="material-icons">report</span> Lista de Denúncias</a>
+    <a href="registerComplaints.html"><span class="material-icons">add_circle</span> Registrar Denúncia</a>
+    <a href="listEvents.html"><span class="material-icons">event</span> Lista de Eventos</a>
+    <a href="registerevents.html"><span class="material-icons">event_available</span> Registrar Evento</a>
+    <a href="creditos.html"><span class="material-icons">info</span> Créditos</a>
 
     <div class="user-section">
       <div class="user-info">
@@ -197,81 +205,121 @@
   </div>
 
   <div class="content">
-    <h1>Cadastro de Denúncias</h1>
-    <form id="complaintsForm">
-      <label for="type">Ocorrência:</label>
-      <input type="text" id="type" required>
+    <h1>Lista de Eventos</h1>
 
-      <label for="description">Descrição:</label>
-      <textarea id="description" name="description" rows="4" required></textarea>
+    <div class="filter-box">
+      <label for="inicio">Data Início:</label>
+      <input type="datetime-local" id="inicio">
+      <label for="fim">Data Fim:</label>
+      <input type="datetime-local" id="fim">
+      <button onclick="filtrar()">Filtrar</button>
+    </div>
 
-      <label for="dateTime">Data e Hora:</label>
-      <input type="datetime-local" id="dateTime" name="dateTime" required>
-
-      <label for="location">Local:</label>
-      <input type="text" id="location" name="location" required>
-
-      <button type="submit">Cadastrar Denúncia</button>
-    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Local</th>
+          <th>Organizador</th>
+          <th>Poster</th>
+        </tr>
+      </thead>
+      <tbody id="eventTable"></tbody>
+    </table>
   </div>
 
   <script>
-    
-    document.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("mouseenter", () => btn.style.transform = "scale(1.05)");
-      btn.addEventListener("mouseleave", () => btn.style.transform = "scale(1)");
-    });
+    const baseUrl = "http://localhost:8080/events";
 
-   
-    document.getElementById("complaintsForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
+    function formatDate(dateTimeLocal) {
+      const [date, time] = dateTimeLocal.split("T");
+      const [year, month, day] = date.split("-");
+      return `${day}/${month}/${year} ${time}`;
+    }
 
-      function formatDate(dateTimeLocal) {
-        const [date, time] = dateTimeLocal.split("T");
-        const [year, month, day] = date.split("-");
-        return `${day}/${month}/${year} ${time}`;
+    function carregarEventos(url) {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const tbody = document.getElementById("eventTable");
+          tbody.innerHTML = "";
+
+          data.forEach(evento => {
+            const tr = document.createElement("tr");
+
+            const tdId = document.createElement("td");
+            tdId.textContent = evento.id;
+            tr.appendChild(tdId);
+
+            const tdNome = document.createElement("td");
+            tdNome.textContent = evento.name;
+            tr.appendChild(tdNome);
+
+            const tdDesc = document.createElement("td");
+            tdDesc.textContent = evento.description;
+            tr.appendChild(tdDesc);
+
+            const tdData = document.createElement("td");
+            tdData.textContent = evento.dateTime;
+            tr.appendChild(tdData);
+
+            const tdLocal = document.createElement("td");
+            tdLocal.textContent = evento.location;
+            tr.appendChild(tdLocal);
+
+            const tdUsuario = document.createElement("td");
+            tdUsuario.textContent = evento.usuario ? evento.usuario.name : "Anônimo";
+            tr.appendChild(tdUsuario);
+
+            const tdPoster = document.createElement("td");
+            if (evento.poster) {
+              const img = document.createElement("img");
+              img.classList.add("poster");
+              img.src = "data:image/png;base64," + evento.poster;
+              tdPoster.appendChild(img);
+            } else {
+              tdPoster.textContent = "-";
+            }
+            tr.appendChild(tdPoster);
+
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(error => console.error("Erro ao buscar eventos:", error));
+    }
+
+    function filtrar() {
+      const inicio = document.getElementById("inicio").value;
+      const fim = document.getElementById("fim").value;
+
+      if (inicio && fim) {
+        const inicioFormatado = formatDate(inicio);
+        const fimFormatado = formatDate(fim);
+        const url = `${baseUrl}/period?inicio=${encodeURIComponent(inicioFormatado)}&fim=${encodeURIComponent(fimFormatado)}`;
+        carregarEventos(url);
+      } else {
+        alert("Preencha as duas datas para aplicar o filtro!");
       }
+    }
 
-      const denuncia = {
-        type: document.getElementById("type").value,
-        description: document.getElementById("description").value,
-        dateTime: formatDate(document.getElementById("dateTime").value),
-        location: document.getElementById("location").value,
-        poster: null
-      };
+    carregarEventos(baseUrl);
 
-      try {
-        const response = await fetch("http://localhost:8080/complaints", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(denuncia)
-        });
+    // Exibir nome do usuário logado
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.querySelector(".username").textContent = username;
+    } else {
+      document.querySelector(".username").textContent = "Anônimo";
+    }
 
-        if (response.ok) {
-          alert("✅ Denúncia cadastrada com sucesso!");
-          document.getElementById("complaintsForm").reset();
-        } else {
-          const errorText = await response.text();
-          alert("❌ Erro ao cadastrar denúncia: " + errorText);
-        }
-      } catch (err) {
-        alert("⚠️ Falha na conexão com o servidor: " + err.message);
-      }
+    // Botão de logout
+    document.querySelector(".logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
     });
-   const username = localStorage.getItem("username");
-
-
-if (username) {
-  document.querySelector(".username").textContent = username;
-} else {
-  document.querySelector(".username").textContent = "Anônimo";
-}
-
-document.querySelector(".logout-btn").addEventListener("click", () => {
-  localStorage.removeItem("username");
-  window.location.href = "login.html";
-});
   </script>
-
 </body>
 </html>

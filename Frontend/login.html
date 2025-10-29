@@ -15,9 +15,8 @@
       <div id="imagem"></div>
       <div id="form">
         <h1>Login</h1>
-        <p>Seja bem-vindo(a). Faça login para acessar sua conta.</p>
+        <p>Seja bem-vindo(a). Faça login ou entre anonimamente.</p>
 
-        
         <form onsubmit="fazerLogin(event)" autocomplete="on">
           <div class="campo"> 
             <span class="material-icons">person</span>
@@ -34,12 +33,18 @@
           <a href="cadastro.html" class="botao">
             Cadastro <span class="material-icons">person_add</span>
           </a>
+
+          
+          <button type="button" class="botao" onclick="entrarAnonimamente()">
+            Entrar como Anônimo <span class="material-icons">visibility_off</span>
+          </button>
         </form>
       </div>
     </section>
   </main>
 
   <script>
+    
     function fazerLogin(event) {
       event.preventDefault(); 
 
@@ -60,6 +65,12 @@
         window.location.href = "listEvents.html";
       })
       .catch(error => alert(error.message));
+    }
+
+   
+    function entrarAnonimamente() {
+      localStorage.setItem("username", "Anônimo");
+      window.location.href = "listEvents.html";
     }
   </script>
 </body>

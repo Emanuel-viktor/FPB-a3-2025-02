@@ -13,6 +13,7 @@
       background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
     }
 
+    /* Sidebar */
     .sidebar {
       font-size: 16px;
       width: 220px;
@@ -37,6 +38,9 @@
       font-weight: bold;
       transition: 0.9s;
       font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .sidebar a:hover {
@@ -44,8 +48,9 @@
       color: #fff;
     }
 
+    /* Sessão do usuário */
     .user-section {
-      margin-top: auto; 
+      margin-top: auto;
       padding: 20px 15px;
       border-top: 1px solid #ee0e0e;
       display: flex;
@@ -82,6 +87,7 @@
       transform: scale(1.05);
     }
 
+    /* Conteúdo principal */
     .content {
       flex: 1;
       padding: 20px;
@@ -105,6 +111,7 @@
       border-radius: 3px;
     }
 
+    /* Caixa de filtro */
     .filter-box {
       margin-bottom: 20px;
       background: #161a1d;
@@ -141,6 +148,7 @@
       background: #b30c0c;
     }
 
+    /* Tabela */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -178,12 +186,12 @@
 
   <div class="sidebar">
     <h2>Menu</h2>
-    <a href="principal.html">Tela Principal</a>
-    <a href="listComplaints.html">Lista de Denúncias</a>
-    <a href="registerComplaints.html">Registrar Denúncia</a>
-    <a href="listEvents.html">Lista de Eventos</a>
-    <a href="registerevents.html">Registrar Eventos</a>
-    <a href="creditos.html">Créditos</a>
+    <a href="principal.html"><span class="material-icons">home</span> Tela Principal</a>
+    <a href="listComplaints.html"><span class="material-icons">report</span> Lista de Denúncias</a>
+    <a href="registerComplaints.html"><span class="material-icons">add_circle</span> Registrar Denúncia</a>
+    <a href="listEvents.html"><span class="material-icons">event</span> Lista de Eventos</a>
+    <a href="registerevents.html"><span class="material-icons">event_available</span> Registrar Evento</a>
+    <a href="creditos.html"><span class="material-icons">info</span> Créditos</a>
 
     <div class="user-section">
       <div class="user-info">
@@ -231,7 +239,7 @@
         .then(response => response.json())
         .then(data => {
           const tbody = document.getElementById("complaintTable");
-          tbody.innerHTML = ""; 
+          tbody.innerHTML = "";
 
           data.forEach(denuncia => {
             const tr = document.createElement("tr");
@@ -290,19 +298,20 @@
     }
 
     carregarDenuncias(baseUrl);
-     const username = localStorage.getItem("username");
 
+    // Exibir nome do usuário logado
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.querySelector(".username").textContent = username;
+    } else {
+      document.querySelector(".username").textContent = "Anônimo";
+    }
 
-if (username) {
-  document.querySelector(".username").textContent = username;
-} else {
-  document.querySelector(".username").textContent = "Anônimo";
-}
-
-document.querySelector(".logout-btn").addEventListener("click", () => {
-  localStorage.removeItem("username");
-  window.location.href = "login.html";
-});
+    // Botão de logout
+    document.querySelector(".logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    });
   </script>
 </body>
 </html>
