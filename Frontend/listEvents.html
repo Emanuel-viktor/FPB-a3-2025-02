@@ -48,7 +48,7 @@
       color: #fff;
     }
 
-    /* Sessão do usuário */
+    
     .user-section {
       margin-top: auto;
       padding: 20px 15px;
@@ -86,6 +86,7 @@
       background-color: #b20b0b;
       transform: scale(1.05);
     }
+    
 
     
     .content {
@@ -148,7 +149,7 @@
       background: #b30c0c;
     }
 
-    /* Tabela */
+    
     table {
       width: 100%;
       border-collapse: collapse;
@@ -307,7 +308,7 @@
 
     carregarEventos(baseUrl);
 
-    // Exibir nome do usuário logado
+    
     const username = localStorage.getItem("username");
     if (username) {
       document.querySelector(".username").textContent = username;
@@ -315,8 +316,7 @@
       document.querySelector(".username").textContent = "Anônimo";
     }
 
-    // Botão de logout
-    document.querySelector(".logout-btn").addEventListener("click", () => {
+        document.querySelector(".logout-btn").addEventListener("click", () => {
       localStorage.removeItem("username");
       window.location.href = "login.html";
     });
