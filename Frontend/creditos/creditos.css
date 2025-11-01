@@ -6,7 +6,7 @@ body {
   background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
 }
 
-/* --- SIDEBAR --- */
+
 .sidebar {
   font-size: 16px;
   width: 220px;
@@ -40,15 +40,15 @@ body {
   background: #ee0e0e;
   color: #fff;
 }
-
 .user-section {
   margin-top: auto;
-  padding: 20px 15px;
+  padding: 25px 15px;
   border-top: 1px solid #ee0e0e;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
+  background-color: #161a1d;
 }
 
 .user-info {
@@ -63,14 +63,16 @@ body {
   background-color: #ee0e0e;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 10px 0;
+  width: 90%;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -79,7 +81,7 @@ body {
   transform: scale(1.05);
 }
 
-/* --- CONTEÚDO --- */
+
 .content {
   flex: 1;
   padding: 40px;
@@ -111,7 +113,7 @@ body {
   gap: 30px;
 }
 
-/* --- CARTÕES --- */
+
 .dev-card {
   background-color: #151515;
   padding: 20px;
