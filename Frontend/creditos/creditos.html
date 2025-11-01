@@ -1,27 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créditos</title>
-    <link rel="stylesheet" href="creditos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créditos</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="creditos.css">
 </head>
 <body>
-    <div class="dev-card">
+  <div class="sidebar">
+  <h2>Menu</h2>
+  <a href="../principal.html"><span class="material-icons">home</span> Tela Principal</a>
+  <a href="../listComplaints.html"><span class="material-icons">report</span> Lista de Ocorrências</a>
+  <a href="../registerComplaints.html"><span class="material-icons">add_circle</span> Registrar Ocorrências</a>
+  <a href="../listEvents.html"><span class="material-icons">event</span> Lista de Eventos</a>
+  <a href="../registerevents.html"><span class="material-icons">event_available</span> Registrar Evento</a>
+  <a href="creditos.html"><span class="material-icons">info</span> Créditos</a>
+
+  <div class="user-section">
+    <div class="user-info">
+      <span class="material-icons" style="font-size:28px;">account_circle</span>
+      <span class="username"></span>
+    </div>
+    <button class="logout-btn">
+      <span class="material-icons" style="font-size:20px;">logout</span> Sair
+    </button>
+  </div>
+</div>
+
+  <div class="content">
+    <h1>Créditos</h1>
+
+    <div class="cards-container">
+      <div class="dev-card">
         <h3>Emanuel Viktor de Souza Bezerra</h3>
         <p>Ciência da Computação</p>
         <p>RA: 1362416509</p>
-        <a href="https://www.linkedin.com/in/emanuel-viktor-719982364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="imagens/imagelink.png" alt="" height="30px">Linkedln</img></a>
+        <a href="https://www.linkedin.com/in/emanuel-viktor-719982364" target="_blank">
+          <img src="imagens/imagelink.png" alt="" height="30px">LinkedIn
+        </a>
+        <a href="https://github.com/Emanuel-viktor" target="_blank">
+          <img src="imagens/image.png" alt="" height="30px">GitHub
+        </a>
+      </div>
 
-        <a href="https://github.com/Emanuel-viktor" target="_blank"><img src="imagens/image.png" alt="" height="30px">Github</img></a>
-    </div>
-    <div class="dev-card">
+      <div class="dev-card">
         <h3>Victor Maximino de Souza</h3>
         <p>Ciência da Computação</p>
         <p>RA: 1362415094</p>
-        <a href="https://www.linkedin.com/in/victormaximinodesouza/"target="_blank" class="link-icon"> <img src="imagens/imagelink.png" alt="" height="30px"> Linkedln</img></a>
-        <a href="https://github.com/victormaximinodesouza" class="link-icon"><img src="imagens/image.png" alt="" height="30px"> Github</img></a>
+        <a href="https://www.linkedin.com/in/victormaximinodesouza/" target="_blank">
+          <img src="imagens/imagelink.png" alt="" height="30px">LinkedIn
+        </a>
+        <a href="https://github.com/victormaximinodesouza" target="_blank">
+          <img src="imagens/image.png" alt="" height="30px">GitHub
+        </a>
+      </div>
     </div>
-</body>
-</html>
+  </div>
 
+  <script>
+    const username = localStorage.getItem("username");
+    document.querySelector(".username").textContent = username || "Anônimo";
+
+    document.querySelector(".logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
