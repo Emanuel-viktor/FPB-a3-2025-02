@@ -57,3 +57,35 @@ html, body {
     font-size: 1.3em;
   }
 }
+
+  .sidebar {
+        font-size: 16px;
+        width: 200px;
+        background: #161a1d;
+        border-right: 2px solid #ee0e0e;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        border-radius: 5px;
+      }
+
+      .sidebar h2 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+
+      .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+        color: #ddd;
+        font-weight: bold;
+        transition: 0.3s;
+        font-size: 14px;
+      }
+
+    .sidebar a:hover {
+    background: #ee0e0e;
+    color: #fff;
+  }
