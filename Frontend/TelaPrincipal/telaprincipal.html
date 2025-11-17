@@ -1,12 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem-vindo</title>
-    <link rel="stylesheet" href="estilos/principal.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: #fff;
+        }
+
+        
+        .sidebar {
+            font-size: 16px;
+            width: 220px;
+            background: #161a1d;
+            border-right: 2px solid #ee0e0e;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 35px;
+        }
+
+        .sidebar a {
+            padding: 25px 18px;
+            text-decoration: none;
+            color: #ddd;
+            font-weight: bold;
+            transition: 0.9s;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar a:hover {
+            background: #ee0e0e;
+            color: #fff;
+        }
+
+        .user-section {
+            margin-top: auto;
+            padding: 25px 15px;
+            border-top: 1px solid #ee0e0e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background-color: #161a1d;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-weight: bold;
+            gap: 10px;
+        }
+
+        .logout-btn {
+            background-color: #ee0e0e;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            width: 90%;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: #b20b0b;
+            transform: scale(1.05);
+        }
+
+        
+        .content {
+            padding: 40px;
+            flex: 1;
+        }
+
+        .welcome-title {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .welcome-sub {
+            font-size: 22px;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-    Seja bem vindo ao Sistema de Ocorrências e Eventos!
+
+    
+    <div class="sidebar">
+        <h2>Menu</h2>
+
+        <a href="principal.html"><span class="material-icons">home</span> Tela Principal</a>
+        <a href="../Complaints/listComplaints.html"><span class="material-icons">report</span> Lista de Ocorrências</a>
+        <a href="../Complaints/registerComplaints.html"><span class="material-icons">add_circle</span> Registrar Ocorrências</a>
+        <a href="../Events/listEvents.html"><span class="material-icons">event</span> Lista de Eventos</a>
+        <a href="../Events/registerevents.html"><span class="material-icons">event_available</span> Registrar Evento</a>
+        <a href="../creditos/creditos.html"><span class="material-icons">info</span> Créditos</a>
+
+        <div class="user-section">
+            <div class="user-info">
+                <span class="material-icons" style="font-size:28px;">account_circle</span>
+                <span class="username"></span>
+            </div>
+
+            <button class="logout-btn">
+                <span class="material-icons" style="font-size:20px;">logout</span>
+                Sair
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="welcome-title">Seja bem-vindo ao Sistema</div>
+        <div class="welcome-sub">Gerencie eventos e ocorrências rapidamente.</div>
+    </div>
+
+    
+    <script>
+        
+        const username = localStorage.getItem("username");
+        document.querySelector(".username").textContent = username ? username : "Anônimo";
+
+
+        document.querySelector(".logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("username");
+            window.location.href = "../Login/login.html";
+        });
+    </script>
+
 </body>
 </html>
