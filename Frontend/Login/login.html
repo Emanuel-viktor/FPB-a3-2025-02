@@ -62,7 +62,7 @@
       })
       .then(user => {
         localStorage.setItem("username", user.name);
-        window.location.href = "listEvents.html";
+        window.location.href = "../TelaPrincipal/telaprincipal.html"
       })
       .catch(error => alert(error.message));
     }
@@ -70,7 +70,7 @@
    
     function entrarAnonimamente() {
       localStorage.setItem("username", "Anônimo");
-      window.location.href = "listEvents.html";
+      window.location.href = "../TelaPrincipal/telaprincipal.html";
     }
   </script>
 </body>
