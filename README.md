@@ -6,6 +6,8 @@
 
 Este projeto foi desenvolvido para a disciplina **Modelos, Métodos e Técnicas da Engenharia de Software** da **Faculdade Internacional da Paraíba – FPB**.
 
+Link documentação:https://docs.google.com/document/d/1mMWeE3QUP7rAKjjUcqQGHGAfxc-h3zrma972AzrYUvs/edit?usp=sharing
+
 ## 🎯 Sobre o Projeto
 
 O aplicativo visa ser uma **Plataforma de Segurança e Eventos Comunitários** para a população da Paraíba. Nossa missão é:
