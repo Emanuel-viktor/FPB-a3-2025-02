@@ -102,11 +102,62 @@
             font-size: 40px;
             font-weight: bold;
             margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.5em;
+            font-style: unset;
         }
 
+    
         .welcome-sub {
             font-size: 22px;
             opacity: 0.7;
+            text-align: center;
+        }
+
+        /* ------------------------- */
+        /*       DASHBOARD NOVO      */
+        /* ------------------------- */
+
+        .dashboard-container {
+            margin-top: 50px;
+        }
+
+        .dashboard-title {
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 25px;
+            border-radius: 12px;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card .number {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0;
+            color: #ff3b3b;
         }
     </style>
 </head>
@@ -114,7 +165,7 @@
 
     
     <div class="sidebar">
-        <h2>Menu</h2>
+        <h2 class="Menu">Menu</h2>
 
         <a href="principal.html"><span class="material-icons">home</span> Tela Principal</a>
         <a href="../Complaints/listComplaints.html"><span class="material-icons">report</span> Lista de Ocorrências</a>
@@ -137,16 +188,45 @@
     </div>
 
     <div class="content">
-        <div class="welcome-title">Seja bem-vindo ao Sistema</div>
+        <div class="welcome-title">Seja bem-vindo ao Paraíba News</div>
         <div class="welcome-sub">Gerencie eventos e ocorrências rapidamente.</div>
+
+        <!-- ----------------------------- -->
+        <!--      DASHBOARD IMPLEMENTADO   -->
+        <!-- ----------------------------- -->
+
+        <div class="dashboard-container">
+            <h2 class="dashboard-title">Visão Geral</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Ocorrências Hoje</h3>
+                    <p class="number">12</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total de Ocorrências</h3>
+                    <p class="number">284</p>
+                </div>
+
+                <div class="card">
+                    <h3>Eventos Ativos</h3>
+                    <p class="number">5</p>
+                </div>
+
+                <div class="card">
+                    <h3>Eventos Cadastrados</h3>
+                    <p class="number">87</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     
     <script>
-        
         const username = localStorage.getItem("username");
         document.querySelector(".username").textContent = username ? username : "Anônimo";
-
 
         document.querySelector(".logout-btn").addEventListener("click", () => {
             localStorage.removeItem("username");
